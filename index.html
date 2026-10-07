@@ -1,1943 +1,719 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eli's Math Practice Quest - Topic 1 Place Value</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eli's Division Final Exam (40 Questions • Show Your Work)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Space Grotesk"', 'sans-serif']
-          },
-          colors: {
-            brand: {
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-            }
-          }
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .math-font {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      body {
+        background-color: white !important;
+        color: black !important;
+        font-size: 10pt;
+      }
+      .exam-card {
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 0.75rem !important;
+        padding: 0.85rem !important;
+        background: transparent !important;
+      }
+      .fr-print-line {
+        display: inline-block !important;
+      }
+      .fr-screen-input {
+        display: none !important;
       }
     }
-  </script>
-  <style>
-    /* Custom scrollbars */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+    .print-only {
+      display: none;
     }
-    ::-webkit-scrollbar-track {
-      background: #f1f5f9;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
-    }
-    .scratchpad-active {
-      cursor: crosshair;
-    }
-    .math-pill {
-      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
-    }
-    @keyframes pulseGlow {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.05); opacity: 1; }
-    }
-    .glow-star {
-      animation: pulseGlow 2s infinite ease-in-out;
+    .fr-print-line {
+      display: none;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen pb-16 selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 min-h-screen pb-20">
 
-  <!-- Confetti Canvas for Celebrations -->
-  <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+  <!-- Paper Printout Header -->
+  <div class="print-only p-6 border-b-2 border-slate-900 mb-5">
+    <div class="flex justify-between items-start mb-4">
+      <div>
+        <h1 class="text-2xl font-black text-slate-900 tracking-tight">Eli's Division Final Exam</h1>
+        <p class="text-xs text-slate-600 font-semibold mt-0.5">40 Free-Response Division Facts • Whole Numbers Only • Show Your Work</p>
+      </div>
+      <div class="text-right text-xs space-y-1">
+        <p><span class="font-bold">Student:</span> Eli _____________________________</p>
+        <p><span class="font-bold">Date:</span> _________________________________</p>
+        <p><span class="font-bold">Final Score:</span> ________ / 40 &nbsp; (______%)</p>
+        <p><span class="font-bold">Teacher / Parent:</span> ______________________</p>
+      </div>
+    </div>
+    <div class="text-[11px] text-slate-600 bg-slate-100 p-2.5 rounded border border-slate-300">
+      <strong>Directions:</strong> Solve each division problem. Write the exact whole number quotient on the line provided. Every problem divides evenly with zero remainder. <strong>Reminder: You must show your work or inverse multiplication check for every problem in the work box provided.</strong>
+    </div>
+  </div>
 
-  <!-- Top App Navigation Bar -->
-  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+  <!-- Sticky Top Navigation Bar -->
+  <header class="no-print sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-md shadow-indigo-100 font-display font-bold text-xl">
-          E
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-indigo-100">
+          ÷
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <h1 class="font-display font-bold text-lg text-slate-900 leading-tight">Eli's Math Mastery</h1>
-            <span class="bg-indigo-100 text-indigo-700 text-xs font-semibold px-2 py-0.5 rounded-full">Topic 1</span>
+            <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">Eli's Division Final Exam</h1>
+            <span class="bg-indigo-100 text-indigo-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">Free Response</span>
           </div>
-          <p class="text-xs text-slate-500 hidden sm:block">5th Grade Place Value, Decimals &amp; Powers of 10</p>
+          <p class="text-xs text-slate-500 font-medium">40 Questions • Show work after each problem • Graded on submission</p>
         </div>
       </div>
 
-      <div class="flex items-center space-x-3 sm:space-x-4">
-        <!-- Sound Toggle -->
-        <button id="sound-btn" onclick="toggleSound()" class="p-2 text-slate-500 hover:text-indigo-600 hover:bg-slate-100 rounded-xl transition text-sm flex items-center gap-1.5" title="Toggle Sound FX">
-          <span id="sound-icon">🔊</span>
-          <span class="text-xs font-medium hidden md:inline">Sound</span>
-        </button>
-
-        <!-- Scratchpad Quick Toggle -->
-        <button id="scratchpad-toggle-btn" onclick="toggleScratchpad()" class="px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition shadow-sm">
-          <span>✏️</span>
-          <span>Scratchpad</span>
-        </button>
-
-        <!-- Mode Toggle: Interactive vs All Questions View -->
-        <button id="view-mode-btn" onclick="toggleViewMode()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition">
-          <span id="view-mode-icon">📋</span>
-          <span id="view-mode-text">View All 50</span>
-        </button>
-
-        <!-- Score Badge -->
-        <div class="flex items-center space-x-2 bg-indigo-50 border border-indigo-100 px-3 py-1.5 rounded-xl">
-          <span class="text-amber-500 text-sm">⭐</span>
-          <span id="score-counter" class="font-bold text-indigo-900 text-sm">0 / 50</span>
+      <!-- Real-time Exam Indicators -->
+      <div class="flex items-center space-x-3 bg-slate-100 px-3.5 py-1.5 rounded-xl border border-slate-200 text-xs">
+        <div class="font-medium text-slate-600">
+          Submitted: <span id="answered-counter" class="font-bold text-indigo-600">0</span>/40
+        </div>
+        <div class="h-4 w-px bg-slate-300"></div>
+        <div class="font-medium text-slate-600">
+          Score: <span id="live-score" class="font-bold text-emerald-600">0</span>/40
+        </div>
+        <div class="h-4 w-px bg-slate-300"></div>
+        <div class="font-medium text-slate-600 flex items-center gap-1.5">
+          <span>⏱️</span>
+          <span id="timer-display" class="font-mono font-bold text-slate-800">00:00</span>
         </div>
       </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2">
+        <button id="submit-btn" onclick="promptSubmitExam()" class="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-200 active:scale-95 transition flex items-center gap-1.5">
+          <span>Submit Final Exam</span> 🚀
+        </button>
+        <button onclick="window.print()" class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-900 text-white transition flex items-center gap-1">
+          <span>🖨️ Print</span>
+        </button>
+        <button onclick="promptResetExam()" class="px-2.5 py-2 rounded-xl text-xs font-semibold text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition" title="Restart Exam">
+          🔄
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress Indicator -->
+    <div class="w-full bg-slate-100 h-1.5 overflow-hidden">
+      <div id="progress-bar" class="bg-indigo-600 h-full transition-all duration-300 ease-out" style="width: 0%"></div>
     </div>
   </header>
 
-  <div class="bg-white border-b border-slate-100">
-    <div class="max-w-6xl mx-auto px-4 py-2.5">
-      <div class="flex flex-wrap items-center justify-between text-xs text-slate-500 mb-1.5 gap-2">
-        <span id="progress-text" class="font-medium">Question 1 of 50</span>
-        <div class="flex items-center gap-3">
-          <span class="flex items-center gap-1">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span>
-            <span id="correct-count">0 Correct</span>
-          </span>
-          <span class="flex items-center gap-1">
-            <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 inline-block"></span>
-            <span id="streak-count">Streak: 0</span>
-          </span>
+  <main class="max-w-5xl mx-auto px-4 pt-6">
+
+    <!-- Instructions Hero Card -->
+    <div class="no-print bg-gradient-to-r from-slate-900 via-indigo-950 to-indigo-900 text-white rounded-2xl p-6 mb-8 shadow-xl shadow-slate-200 relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-indigo-500/20 rounded-full blur-3xl"></div>
+      <div class="relative z-10 max-w-2xl">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-500/30 text-indigo-200 text-xs font-bold tracking-wide uppercase mb-2">
+          <span>🔒 Final Exam Conditions</span>
         </div>
-      </div>
-      <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
-        <div id="progress-bar-fill" class="bg-gradient-to-r from-indigo-500 to-violet-500 h-2.5 rounded-full transition-all duration-300 w-[2%]"></div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Eli's Division Final Assessment 🎯</h2>
+        <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+          Welcome to the final exam! There are <strong>40 free-response division problems</strong> with <strong>no multiple choice</strong> and <strong>no remainders</strong>. Eli can now <strong>submit each question one by one</strong> as soon as he types his quotient and shows his work! Instant feedback and the inverse multiplication check are revealed for each question upon submitting. You can also view the full scorecard at any time. Good luck!
+        </p>
       </div>
     </div>
-  </div>
 
-  <main class="max-w-6xl mx-auto px-4 pt-6">
-    <!-- Category Pills -->
-    <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 no-scrollbar">
-      <button onclick="filterCategory('All')" class="cat-pill active px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-indigo-600 text-white transition shadow-sm" data-category="All">
-        All Questions (50)
-      </button>
-      <button onclick="filterCategory('Powers of 10')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-indigo-300 transition" data-category="Powers of 10">
-        Powers of 10 (Q1-10)
-      </button>
-      <button onclick="filterCategory('Forms of Decimals')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-indigo-300 transition" data-category="Forms of Decimals">
-        Expanded &amp; Word Form (Q11-20)
-      </button>
-      <button onclick="filterCategory('Comparing Decimals')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-indigo-300 transition" data-category="Comparing Decimals">
-        Comparing Decimals (Q21-30)
-      </button>
-      <button onclick="filterCategory('Patterns with Powers')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-indigo-300 transition" data-category="Patterns with Powers">
-        Patterns &amp; Sequences (Q31-40)
-      </button>
-      <button onclick="filterCategory('Rounding Decimals')" class="cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-indigo-300 transition" data-category="Rounding Decimals">
-        Rounding Decimals (Q41-50)
-      </button>
-    </div>
-
-    <div id="interactive-view" class="space-y-6">
-      
-      <!-- Eli's Encouragement & Tip Banner -->
-      <div id="coach-banner" class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/80 rounded-2xl p-4 flex items-start gap-3 shadow-xs">
-        <div class="text-2xl pt-0.5">💡</div>
-        <div class="flex-1 text-sm text-amber-900">
-          <span class="font-bold text-amber-950">Eli's Strategy Tip:</span>
-          <span id="coach-tip-text">When working with "100 times" or "1/10 of", ask yourself: "Is the answer bigger or smaller?" In 5th grade, multiplying by 10 moves numbers one place value to the left!</span>
+    <!-- Post-Grading Summary Banner (Hidden until test is submitted) -->
+    <div id="review-banner" class="hidden no-print mb-8 p-5 bg-emerald-50 border-2 border-emerald-200 rounded-2xl flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div id="review-badge-icon" class="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-2xl font-bold">
+          🎉
         </div>
-        <button onclick="togglePlaceValueChart()" class="text-xs font-semibold bg-white border border-amber-300 text-amber-900 px-2.5 py-1 rounded-lg hover:bg-amber-100 transition whitespace-nowrap shadow-xs">
-          📊 Place Value Chart
+        <div>
+          <h3 class="text-lg font-bold text-slate-900" id="review-title">Exam Submitted & Graded!</h3>
+          <p class="text-xs text-slate-600" id="review-subtitle">Review your question-by-question breakdown and explanations below.</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="openModal('score-modal')" class="px-4 py-2 text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl shadow transition">
+          View Report Card
+        </button>
+        <button onclick="promptResetExam()" class="px-4 py-2 text-xs font-semibold bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-xl transition">
+          Retake Exam
         </button>
       </div>
-
-      <!-- Collapsible Place Value Helper Chart -->
-      <div id="place-value-chart-modal" class="hidden bg-white border border-indigo-200 rounded-2xl p-5 shadow-lg transition-all">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="font-display font-bold text-slate-900 flex items-center gap-2">
-            <span>📐</span> Place Value Helper Reference
-          </h3>
-          <button onclick="togglePlaceValueChart()" class="text-slate-400 hover:text-slate-600 text-sm">✕ Close</button>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-center border-collapse text-xs md:text-sm">
-            <thead>
-              <tr class="bg-indigo-600 text-white font-semibold">
-                <th class="p-2 border border-indigo-700">Thousands</th>
-                <th class="p-2 border border-indigo-700">Hundreds</th>
-                <th class="p-2 border border-indigo-700">Tens</th>
-                <th class="p-2 border border-indigo-700">Ones</th>
-                <th class="p-2 border border-indigo-700 bg-violet-700">. (Dot)</th>
-                <th class="p-2 border border-indigo-700">Tenths</th>
-                <th class="p-2 border border-indigo-700">Hundredths</th>
-                <th class="p-2 border border-indigo-700">Thousandths</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="bg-slate-50 font-mono text-slate-700">
-                <td class="p-2 border border-slate-200">1,000</td>
-                <td class="p-2 border border-slate-200">100</td>
-                <td class="p-2 border border-slate-200">10</td>
-                <td class="p-2 border border-slate-200">1</td>
-                <td class="p-2 border border-slate-200 bg-violet-50 font-bold text-violet-700">.</td>
-                <td class="p-2 border border-slate-200">0.1 or <sup>1</sup>/<sub>10</sub></td>
-                <td class="p-2 border border-slate-200">0.01 or <sup>1</sup>/<sub>100</sub></td>
-                <td class="p-2 border border-slate-200">0.001 or <sup>1</sup>/<sub>1000</sub></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="text-xs text-slate-500 mt-2 italic">Rule: Moving 1 place to the left multiplies by 10 (&times;10). Moving 1 place to the right is <sup>1</sup>/<sub>10</sub> of the value (&divide;10).</p>
-      </div>
-
-      <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-8 relative transition-all">
-        
-        <!-- Question Meta Header -->
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-          <div class="flex items-center space-x-2">
-            <span id="card-q-number" class="w-8 h-8 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-700 font-bold flex items-center justify-center text-sm">
-              1
-            </span>
-            <span id="card-q-category" class="text-xs font-semibold uppercase tracking-wider text-slate-500 bg-slate-100 px-3 py-1 rounded-lg">
-              Powers of 10
-            </span>
-          </div>
-
-          <div class="flex items-center space-x-2">
-            <button onclick="prevQuestion()" id="prev-btn" class="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed transition flex items-center gap-1">
-              ← Prev
-            </button>
-            <button onclick="nextQuestion()" id="next-btn" class="px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed transition flex items-center gap-1">
-              Next →
-            </button>
-            <button onclick="openJumpModal()" class="px-3 py-1.5 rounded-xl bg-slate-100 text-xs font-semibold text-slate-700 hover:bg-slate-200 transition">
-              Jump To...
-            </button>
-          </div>
-        </div>
-
-        <!-- Question Prompt -->
-        <div class="mb-8">
-          <h2 id="card-q-text" class="text-xl sm:text-2xl font-bold text-slate-900 leading-relaxed font-display">
-            Loading question...
-          </h2>
-          <div id="card-q-subtext" class="text-sm text-slate-500 mt-2"></div>
-        </div>
-
-        <div id="options-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
-          <!-- Dynamic Option Buttons inserted via JS -->
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-slate-100">
-          <button id="check-answer-btn" onclick="checkCurrentAnswer()" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-100 hover:shadow-indigo-200 transition active:scale-[0.98] flex items-center justify-center gap-2">
-            <span>Check My Answer</span>
-            <span>✨</span>
-          </button>
-
-          <button id="show-explanation-btn" onclick="toggleExplanation()" class="text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition flex items-center gap-1.5">
-            <span id="explanation-toggle-icon">🔍</span>
-            <span id="explanation-toggle-text">Show Step-by-Step Solution</span>
-          </button>
-        </div>
-
-        <div id="explanation-panel" class="hidden mt-6 pt-6 border-t-2 border-dashed border-indigo-100 bg-indigo-50/50 -mx-6 -mb-6 sm:-mx-8 sm:-mb-8 p-6 sm:p-8 rounded-b-3xl">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-2">
-              <span class="w-7 h-7 rounded-lg bg-emerald-500 text-white flex items-center justify-center text-sm font-bold shadow-sm">✓</span>
-              <h3 class="font-display font-bold text-slate-900 text-base">Step-by-Step How To Solve:</h3>
-            </div>
-            <span id="feedback-badge" class="text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider"></span>
-          </div>
-
-          <!-- Explanation Steps list -->
-          <div id="explanation-steps" class="space-y-3 mb-4 text-sm text-slate-700">
-            <!-- Dynamic steps inserted via JS -->
-          </div>
-
-          <!-- Eli's Common Trap Alert -->
-          <div id="explanation-trap" class="bg-amber-100/70 border border-amber-200 rounded-xl p-3.5 text-xs text-amber-900 flex items-start gap-2.5">
-            <span class="text-base">⚠️</span>
-            <div>
-              <span class="font-bold">Watch out for this trap:</span>
-              <span id="trap-text"></span>
-            </div>
-          </div>
-
-          <!-- Next Button inside explanation for fast moving -->
-          <div class="mt-5 flex justify-end">
-            <button onclick="nextQuestion()" class="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded-xl shadow-sm transition flex items-center gap-1.5">
-              <span>Next Question</span>
-              <span>→</span>
-            </button>
-          </div>
-        </div>
-
-      </div>
-
     </div>
 
-    <div id="all-questions-view" class="hidden space-y-6">
-      <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm flex flex-wrap items-center justify-between gap-4">
-        <div>
-          <h2 class="font-display font-bold text-xl text-slate-900">All 50 Practice Questions</h2>
-          <p class="text-sm text-slate-500">Perfect for printing, quick review, or tutor session with Eli!</p>
-        </div>
-        <div class="flex items-center gap-3">
-          <button onclick="toggleAllSolutions()" id="toggle-all-solutions-btn" class="px-4 py-2 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold rounded-xl hover:bg-indigo-100 transition">
-            Show All Explanations
-          </button>
-          <button onclick="window.print()" class="px-4 py-2 bg-slate-900 text-white text-xs font-semibold rounded-xl hover:bg-slate-800 transition flex items-center gap-1.5">
-            <span>🖨️</span>
-            <span>Print Worksheet</span>
-          </button>
-        </div>
-      </div>
-
-      <div id="all-questions-list" class="space-y-4">
-        <!-- Rendered by JS -->
-      </div>
+    <!-- 10 Questions Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto" id="questions-grid">
+      <!-- Populated dynamically via JavaScript with free-response inputs -->
     </div>
+
+    <!-- Bottom Submit Bar -->
+    <div class="no-print mt-12 mb-6 p-6 bg-white rounded-2xl border border-slate-200 shadow-sm text-center max-w-xl mx-auto">
+      <h3 class="text-lg font-bold text-slate-900 mb-1">Ready to grade your final exam?</h3>
+      <p class="text-xs text-slate-500 mb-4" id="submit-note">Make sure you have entered an answer and shown your work for all 40 problems before submitting.</p>
+      <button id="bottom-submit-btn" onclick="promptSubmitExam()" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-100 active:scale-95 transition">
+        Submit & View Final Score 🎯
+      </button>
+    </div>
+
   </main>
 
-  <div id="scratchpad-modal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl w-full max-w-4xl shadow-2xl flex flex-col overflow-hidden max-h-[90vh]">
-      <!-- Scratchpad Header -->
-      <div class="bg-slate-50 border-b border-slate-200 px-6 py-3.5 flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="text-xl">✏️</span>
-          <div>
-            <h3 class="font-display font-bold text-slate-900 text-sm">Eli's Math Scratchpad</h3>
-            <p class="text-[11px] text-slate-500">Draw, write out decimals, or do scratch math calculations here!</p>
-          </div>
-        </div>
+  <!-- Score Report Modal (Shown on submit) -->
+  <div id="score-modal" class="no-print fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl text-center transform transition-all">
+      <div id="modal-badge" class="w-16 h-16 mx-auto rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-3xl mb-3 shadow-inner">
+        🌟
+      </div>
+      <h3 class="text-2xl font-black text-slate-900" id="modal-title">Final Exam Complete!</h3>
+      <p class="text-xs font-medium text-slate-500 mt-1" id="modal-subtitle">Official Score Report for Eli</p>
 
-        <div class="flex items-center gap-2">
-          <!-- Colors -->
-          <div class="flex items-center gap-1 bg-white border border-slate-200 p-1 rounded-xl">
-            <button onclick="setPenColor('#1e293b')" class="w-6 h-6 rounded-lg bg-slate-800 border-2 border-white shadow-xs focus:ring-2 focus:ring-indigo-500"></button>
-            <button onclick="setPenColor('#2563eb')" class="w-6 h-6 rounded-lg bg-blue-600 border-2 border-white shadow-xs focus:ring-2 focus:ring-indigo-500"></button>
-            <button onclick="setPenColor('#dc2626')" class="w-6 h-6 rounded-lg bg-red-600 border-2 border-white shadow-xs focus:ring-2 focus:ring-indigo-500"></button>
-            <button onclick="setPenColor('#16a34a')" class="w-6 h-6 rounded-lg bg-emerald-600 border-2 border-white shadow-xs focus:ring-2 focus:ring-indigo-500"></button>
-          </div>
-          <!-- Clear Button -->
-          <button onclick="clearScratchpad()" class="px-3 py-1.5 bg-rose-50 text-rose-700 hover:bg-rose-100 rounded-xl text-xs font-semibold transition">
-            Clear
-          </button>
-          <!-- Close Button -->
-          <button onclick="toggleScratchpad()" class="px-3 py-1.5 bg-slate-200 text-slate-700 hover:bg-slate-300 rounded-xl text-xs font-semibold transition">
-            Close
-          </button>
+      <div class="my-5 p-4 rounded-xl bg-slate-50 border border-slate-200 grid grid-cols-3 gap-2">
+        <div>
+          <div class="text-2xl font-black text-indigo-600" id="modal-score">0/40</div>
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Correct</div>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-slate-800" id="modal-percent">0%</div>
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Score</div>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-emerald-600" id="modal-time">00:00</div>
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Time</div>
         </div>
       </div>
 
-      <!-- Scratchpad Canvas Area -->
-      <div class="relative flex-1 bg-white" style="min-height: 400px;">
-        <canvas id="scratchpad-canvas" class="w-full h-full block scratchpad-active bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px]"></canvas>
+      <div id="modal-summary-text" class="text-xs text-slate-600 bg-indigo-50/70 p-3 rounded-xl border border-indigo-100 mb-5 leading-relaxed text-left">
+        <!-- Message populated dynamically -->
+      </div>
+
+      <div class="flex gap-2">
+        <button onclick="closeModal('score-modal')" class="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-sm transition">
+          Review All Answers 🔍
+        </button>
+        <button onclick="window.print()" class="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-semibold rounded-xl text-sm transition">
+          Print
+        </button>
       </div>
     </div>
   </div>
 
-  <div id="jump-modal" class="hidden fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4">
-      <div class="flex items-center justify-between">
-        <h3 class="font-display font-bold text-slate-900 text-base">Jump to Any Question (1 - 50)</h3>
-        <button onclick="closeJumpModal()" class="text-slate-400 hover:text-slate-600 text-sm">✕</button>
+  <!-- Incomplete Exam Warning Modal -->
+  <div id="confirm-submit-modal" class="no-print fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 text-center shadow-2xl">
+      <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mx-auto mb-3">
+        ⚠️
       </div>
-      <div class="grid grid-cols-10 gap-1.5 max-h-72 overflow-y-auto p-1" id="jump-buttons-grid">
-        <!-- Rendered by JS -->
+      <h4 class="text-lg font-bold text-slate-900" id="confirm-submit-title">Submit Final Exam?</h4>
+      <p class="text-xs text-slate-600 mt-2 leading-relaxed" id="confirm-submit-desc">
+        You still have unanswered questions. Are you sure you want to grade your exam now?
+      </p>
+      <div class="flex gap-2 mt-5">
+        <button onclick="closeModal('confirm-submit-modal')" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition">
+          Keep Working
+        </button>
+        <button onclick="finalizeGrading()" class="flex-1 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs transition">
+          Yes, Grade Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reset Confirmation Modal -->
+  <div id="reset-modal" class="no-print fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 text-center shadow-xl">
+      <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-xl mx-auto mb-3">
+        🔄
+      </div>
+      <h4 class="text-lg font-bold text-slate-900">Restart Final Exam?</h4>
+      <p class="text-xs text-slate-600 mt-1">This will clear your answers and restart the test timer.</p>
+      <div class="flex gap-2 mt-5">
+        <button onclick="closeModal('reset-modal')" class="flex-1 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl text-xs transition">
+          Cancel
+        </button>
+        <button onclick="confirmReset()" class="flex-1 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-xs transition">
+          Yes, Restart
+        </button>
       </div>
     </div>
   </div>
 
   <script>
-    // 50 Questions carefully mirroring Eli's Topic 1 Assessment Practice
-    const questions = [
-      // CATEGORY 1: POWERS OF 10 & PLACE VALUE RELATIONSHIPS (Q1 - Q10)
-      {
-        id: 1,
-        category: "Powers of 10",
-        prompt: "Complete the statement to make it true: <br><span class='text-indigo-600 font-mono text-2xl'>6 is 100 times _____</span>",
-        subtext: "Think: 6 is 100 times larger than which number?",
-        options: [
-          "600",
-          "0.6",
-          "0.06",
-          "0.006"
-        ],
-        answer: 2, // 0.06
-        steps: [
-          "<strong>Identify what the sentence means:</strong> '6 is 100 times [blank]' means: 6 = 100 &times; [blank].",
-          "<strong>Solve for the blank:</strong> To find the missing number, divide 6 by 100: <br><span class='font-mono font-bold text-indigo-700 text-base'>6 &divide; 100 = 0.06</span>",
-          "<strong>Check with multiplication:</strong> 100 &times; 0.06 = 6. This is true!"
-        ],
-        trap: "Don't confuse '6 is 100 times [blank]' with '100 times 6 is [blank]'. 6 is already the bigger number, so the blank must be smaller (0.06)!"
-      },
-      {
-        id: 2,
-        category: "Powers of 10",
-        prompt: "Complete the statement to make it true: <br><span class='text-indigo-600 font-mono text-2xl'>0.06 is 10 times _____</span>",
-        subtext: "Which number when multiplied by 10 gives 0.06?",
-        options: [
-          "0.6",
-          "0.006",
-          "6",
-          "0.0006"
-        ],
-        answer: 1, // 0.006
-        steps: [
-          "<strong>Translate the sentence:</strong> 0.06 = 10 &times; [blank].",
-          "<strong>Divide to find the missing factor:</strong> 0.06 &divide; 10 moves the decimal point 1 place to the left.",
-          "<strong>Compute:</strong> 0.06 &divide; 10 = <span class='font-mono font-bold text-indigo-700'>0.006</span> (six thousandths)."
-        ],
-        trap: "Eli, remember: if 0.06 is 10 times something, that something must be 10 times SMALLER. Six hundredths &divide; 10 = six thousandths (0.006)!"
-      },
-      {
-        id: 3,
-        category: "Powers of 10",
-        prompt: "Complete the statement to make it true: <br><span class='text-indigo-600 font-mono text-2xl'>60 is <sup>1</sup>/<sub>100</sub> of _____</span>",
-        subtext: "If 60 is 1/100 of a whole amount, what is the whole amount?",
-        options: [
-          "60 / 100 (or 0.60)",
-          "600",
-          "6,000",
-          "60,000"
-        ],
-        answer: 2, // 6,000
-        steps: [
-          "<strong>Understand '1/100 of':</strong> '60 is 1/100 of [blank]' means 60 is one of 100 equal parts of that number.",
-          "<strong>Work backwards:</strong> If one hundredth is 60, then the whole number is 100 times bigger than 60.",
-          "<strong>Calculate:</strong> 60 &times; 100 = <span class='font-mono font-bold text-indigo-700'>6,000</span>."
-        ],
-        trap: "Do not write 60/100! 60 is already 1/100 of the mystery number, so the mystery number must be 100 times larger than 60!"
-      },
-      {
-        id: 4,
-        category: "Powers of 10",
-        prompt: "Which number has a digit in the <strong>ones place</strong> that is <sup>1</sup>/<sub>10</sub> the value of the digit in the <strong>tens place</strong>?",
-        subtext: "Select the number where the same digit in the ones place is 1/10 of the digit in the tens place.",
-        options: [
-          "9,077",
-          "9,884",
-          "1,303",
-          "1,055"
-        ],
-        answer: 3, // 1,055
-        steps: [
-          "<strong>Analyze the place values:</strong> Tens place is to the left of the ones place. Each step to the right is <sup>1</sup>/<sub>10</sub> the value.",
-          "<strong>Check each number:</strong>",
-          "• In 9,077: 7 is in tens (70) and 7 is in ones (7). Here 7 is <sup>1</sup>/<sub>10</sub> of 70!",
-          "• In 1,055: 5 is in the tens place (value 50) and 5 is in the ones place (value 5). The 5 in the ones place (5) is <sup>1</sup>/<sub>10</sub> of 50!",
-          "Therefore, <span class='font-mono font-bold text-indigo-700'>1,055</span> has a digit in the ones place that is 1/10 the value of the digit in the tens place."
-        ],
-        trap: "Look closely at the digits in the tens and ones positions: they must be identical digits side-by-side (like 5 in tens and 5 in ones)!"
-      },
-      {
-        id: 5,
-        category: "Powers of 10",
-        prompt: "Mrs. Martin has <strong>$7,000</strong> in her savings account. Alonzo has <sup>1</sup>/<sub>10</sub> as much money in his account as Mrs. Martin. How much money does Alonzo have?",
-        subtext: "Find 1/10 of $7,000.",
-        options: [
-          "$70",
-          "$700",
-          "$70,000",
-          "$7"
-        ],
-        answer: 1, // $700
-        steps: [
-          "<strong>Find <sup>1</sup>/<sub>10</sub> of $7,000:</strong> '1/10 of' means divide by 10 (or multiply by 1/10).",
-          "<strong>Divide by 10:</strong> $7,000 &divide; 10 = <span class='font-mono font-bold text-indigo-700'>$700</span>.",
-          "<strong>Quick check:</strong> 10 &times; $700 = $7,000. Alonzo has $700!"
-        ],
-        trap: "Dividing by 10 removes one zero from 7,000, leaving 700."
-      },
-      {
-        id: 6,
-        category: "Powers of 10",
-        prompt: "Which statement about the values of <strong>2.044</strong> and <strong>20.44</strong> is true?",
-        subtext: "Compare how the digits shifted one place value.",
-        options: [
-          "2.044 is 10 times 20.44",
-          "2.044 is <sup>1</sup>/<sub>10</sub> of 20.44",
-          "2.044 is <sup>1</sup>/<sub>100</sub> of 20.44",
-          "20.44 is 100 times 2.044"
-        ],
-        answer: 1, // 2.044 is 1/10 of 20.44
-        steps: [
-          "<strong>Notice the position of the decimal point:</strong> In 20.44, the 2 is in the tens place. In 2.044, the 2 is in the ones place.",
-          "<strong>Determine the relationship:</strong> 2.044 is 1 place value smaller than 20.44.",
-          "<strong>Conclusion:</strong> 2.044 is <span class='font-mono font-bold text-indigo-700'><sup>1</sup>/<sub>10</sub> of 20.44</span> (and 20.44 is 10 times 2.044)."
-        ],
-        trap: "20.44 has the decimal 1 spot to the right, which makes it 10 times bigger, not 100 times!"
-      },
-      {
-        id: 7,
-        category: "Powers of 10",
-        prompt: "Complete the statement: <br><span class='text-indigo-600 font-mono text-2xl'>800 is _____ times greater than 8</span>",
-        subtext: "How many times does 8 go into 800?",
-        options: [
-          "10",
-          "100",
-          "1,000",
-          "<sup>1</sup>/<sub>100</sub>"
-        ],
-        answer: 1, // 100
-        steps: [
-          "<strong>Compare place values:</strong> 8 is in the ones place (8). 800 has 8 in the hundreds place (800).",
-          "<strong>Count the jumps:</strong> Ones &rarr; Tens (10&times;) &rarr; Hundreds (10 &times; 10 = 100&times;).",
-          "<strong>Calculate:</strong> 800 &divide; 8 = <span class='font-mono font-bold text-indigo-700'>100</span>."
-        ],
-        trap: "Remember: 2 places to the left means 10 &times; 10 = 100 times greater!"
-      },
-      {
-        id: 8,
-        category: "Powers of 10",
-        prompt: "In the number <strong>55.5</strong>, how does the 5 in the tenths place compare to the 5 in the ones place?",
-        subtext: "Compare 0.5 to 5.",
-        options: [
-          "It is 10 times greater",
-          "It is <sup>1</sup>/<sub>10</sub> of its value",
-          "It is <sup>1</sup>/<sub>100</sub> of its value",
-          "They have the exact same value"
-        ],
-        answer: 1, // 1/10
-        steps: [
-          "<strong>Find each value:</strong> The 5 in the ones place equals 5. The 5 in the tenths place equals 0.5 (<sup>5</sup>/<sub>10</sub>).",
-          "<strong>Compare:</strong> 0.5 is <sup>1</sup>/<sub>10</sub> of 5.",
-          "<strong>Rule:</strong> Any digit is <sup>1</sup>/<sub>10</sub> of the value of the same digit immediately to its left."
-        ],
-        trap: "Moving right means smaller by 1/10! Moving left means bigger by 10&times;."
-      },
-      {
-        id: 9,
-        category: "Powers of 10",
-        prompt: "A bakery baked <strong>5,000</strong> cookies this month. A small cafe baked <sup>1</sup>/<sub>100</sub> of that amount. How many cookies did the cafe bake?",
-        subtext: "Calculate 5,000 divided by 100.",
-        options: [
-          "5 cookies",
-          "50 cookies",
-          "500 cookies",
-          "50,000 cookies"
-        ],
-        answer: 1, // 50 cookies
-        steps: [
-          "<strong>Set up calculation:</strong> <sup>1</sup>/<sub>100</sub> of 5,000 = 5,000 &divide; 100.",
-          "<strong>Shift digits:</strong> Dividing by 100 shifts the digits 2 places to the right (remove two zeros).",
-          "<strong>Result:</strong> 5,000 &divide; 100 = <span class='font-mono font-bold text-indigo-700'>50 cookies</span>."
-        ],
-        trap: "Be careful: dividing by 100 removes two zeros, not just one!"
-      },
-      {
-        id: 10,
-        category: "Powers of 10",
-        prompt: "Complete the statement to make it true: <br><span class='text-indigo-600 font-mono text-2xl'>0.7 is <sup>1</sup>/<sub>10</sub> of _____</span>",
-        subtext: "Which number is 0.7 one-tenth of?",
-        options: [
-          "0.07",
-          "7",
-          "70",
-          "0.007"
-        ],
-        answer: 1, // 7
-        steps: [
-          "<strong>Understand the relation:</strong> 0.7 is <sup>1</sup>/<sub>10</sub> of [blank] &rArr; [blank] is 10 times bigger than 0.7.",
-          "<strong>Multiply by 10:</strong> 0.7 &times; 10 = <span class='font-mono font-bold text-indigo-700'>7</span>.",
-          "<strong>Check:</strong> <sup>1</sup>/<sub>10</sub> of 7 is 0.7. Correct!"
-        ],
-        trap: "If you chose 0.07, remember that 0.07 is smaller than 0.7. The blank must be 10 times bigger!"
-      },
-
-      // CATEGORY 2: EXPANDED FORM, STANDARD FORM & WORD NAMES (Q11 - Q20)
-      {
-        id: 11,
-        category: "Forms of Decimals",
-        prompt: "The weight of Darrin's phone is <strong>3.405</strong> ounces. What is 3.405 written in expanded form using fractions?",
-        subtext: "Break down each digit: 3 ones, 4 tenths, 0 hundredths, 5 thousandths.",
-        options: [
-          "(3 × 1) + (4 × 1/10) + (5 × 1/1,000)",
-          "(3 × 10) + (4 × 1/10) + (5 × 1/1,000)",
-          "(3 × 10) + (4 × 1/10) + (5 × 1/100)",
-          "(3 × 1) + (4 × 1/100) + (5 × 1/1,000)"
-        ],
-        answer: 0,
-        steps: [
-          "<strong>Analyze each digit of 3.405:</strong>",
-          "• The 3 is in the <strong>ones</strong> place: 3 &times; 1",
-          "• The 4 is in the <strong>tenths</strong> place: 4 &times; <sup>1</sup>/<sub>10</sub>",
-          "• The 0 is in the <strong>hundredths</strong> place: 0 (we can skip)",
-          "• The 5 is in the <strong>thousandths</strong> place: 5 &times; <sup>1</sup>/<sub>1,000</sub>",
-          "<strong>Combine:</strong> <span class='font-mono font-bold text-indigo-700'>(3 &times; 1) + (4 &times; <sup>1</sup>/<sub>10</sub>) + (5 &times; <sup>1</sup>/<sub>1,000</sub>)</span>."
-        ],
-        trap: "Watch out for option B which has (3 &times; 10). The 3 is in the ONES place, so it is 3 &times; 1, not 3 &times; 10!"
-      },
-      {
-        id: 12,
-        category: "Forms of Decimals",
-        prompt: "A national park has <strong>eighty thousand, nine-hundred twenty-three and eighty-six hundredths</strong> acres of land. Which shows this in standard form?",
-        subtext: "Write this number with digits and a decimal point.",
-        options: [
-          "80,923.086",
-          "80,923.68",
-          "80,923.86",
-          "80,923.806"
-        ],
-        answer: 2, // 80,923.86
-        steps: [
-          "<strong>Break down whole number part:</strong> 'eighty thousand, nine-hundred twenty-three' = 80,923.",
-          "<strong>The word 'and' represents the decimal point:</strong> .",
-          "<strong>Break down the decimal part:</strong> 'eighty-six hundredths' = .86 (8 in tenths, 6 in hundredths).",
-          "<strong>Combine:</strong> <span class='font-mono font-bold text-indigo-700'>80,923.86</span>."
-        ],
-        trap: "Make sure you don't pick .086 (that would be 86 thousandths!). 'Eighty-six hundredths' takes 2 decimal places: .86."
-      },
-      {
-        id: 13,
-        category: "Forms of Decimals",
-        prompt: "In a basketball tournament, Dimitri averaged <strong>12.375</strong> rebounds per game. What is 12.375 written in word form (number names)?",
-        subtext: "Remember: read the decimal point as 'and'.",
-        options: [
-          "Twelve and three hundred seventy-five hundredths",
-          "Twelve and three hundred seventy-five thousandths",
-          "One thousand two hundred thirty-seven and five tenths",
-          "Twelve point three hundred seventy-five"
-        ],
-        answer: 1,
-        steps: [
-          "<strong>Read the whole number:</strong> 12 &rarr; 'twelve'.",
-          "<strong>Read the decimal point:</strong> . &rarr; 'and'.",
-          "<strong>Read the decimal digits as a number:</strong> 375 &rarr; 'three hundred seventy-five'.",
-          "<strong>Name the last place value:</strong> The 5 is in the 3rd decimal place (thousandths).",
-          "<strong>Full name:</strong> <span class='font-mono font-bold text-indigo-700'>twelve and three hundred seventy-five thousandths</span>."
-        ],
-        trap: "Because there are 3 decimal digits (.375), the final word MUST be thousandths, not hundredths!"
-      },
-      {
-        id: 14,
-        category: "Forms of Decimals",
-        prompt: "What is 12.375 written in expanded form using fractions?",
-        subtext: "Break down: 1 ten, 2 ones, 3 tenths, 7 hundredths, 5 thousandths.",
-        options: [
-          "(1 × 10) + (2 × 1) + (3 × 1/10) + (7 × 1/100) + (5 × 1/1,000)",
-          "(1 × 100) + (2 × 10) + (3 × 1/10) + (7 × 1/100) + (5 × 1/1,000)",
-          "(1 × 10) + (2 × 1) + (3 × 1/100) + (7 × 1/10) + (5 × 1/1,000)",
-          "10 + 2 + 0.375"
-        ],
-        answer: 0,
-        steps: [
-          "<strong>Look at the digit values:</strong>",
-          "• 1 in tens = (1 &times; 10)",
-          "• 2 in ones = (2 &times; 1)",
-          "• 3 in tenths = (3 &times; <sup>1</sup>/<sub>10</sub>)",
-          "• 7 in hundredths = (7 &times; <sup>1</sup>/<sub>100</sub>)",
-          "• 5 in thousandths = (5 &times; <sup>1</sup>/<sub>1,000</sub>)",
-          "<strong>Result:</strong> (1&times;10) + (2&times;1) + (3&times;<sup>1</sup>/<sub>10</sub>) + (7&times;<sup>1</sup>/<sub>100</sub>) + (5&times;<sup>1</sup>/<sub>1,000</sub>)."
-        ],
-        trap: "Eli, on your paper you crossed this out—this exact formula is the proper 5th-grade fractional expanded form!"
-      },
-      {
-        id: 15,
-        category: "Forms of Decimals",
-        prompt: "Which number represents: <br><span class='text-indigo-600 font-mono text-xl'>(4 × 10) + (7 × 1) + (3 × <sup>1</sup>/<sub>100</sub>) + (9 × <sup>1</sup>/<sub>1,000</sub>)</span>?",
-        subtext: "Note which place values have 0s.",
-        options: [
-          "47.39",
-          "47.039",
-          "47.309",
-          "470.39"
-        ],
-        answer: 1, // 47.039
-        steps: [
-          "<strong>Tens:</strong> 4 &times; 10 = 40",
-          "<strong>Ones:</strong> 7 &times; 1 = 7 (so whole number is 47)",
-          "<strong>Tenths:</strong> No tenths are listed, so place a <strong>0</strong> in the tenths spot!",
-          "<strong>Hundredths:</strong> 3 &times; <sup>1</sup>/<sub>100</sub> = 3 hundredths",
-          "<strong>Thousandths:</strong> 9 &times; <sup>1</sup>/<sub>1,000</sub> = 9 thousandths",
-          "<strong>Assemble:</strong> <span class='font-mono font-bold text-indigo-700'>47.039</span>."
-        ],
-        trap: "There is NO (digit &times; 1/10), which means there must be a ZERO in the tenths place: 47.039!"
-      },
-      {
-        id: 16,
-        category: "Forms of Decimals",
-        prompt: "Write <strong>seven hundred twelve and six thousandths</strong> in standard form.",
-        subtext: "Be careful with placeholder zeros in the tenths and hundredths.",
-        options: [
-          "712.6",
-          "712.06",
-          "712.006",
-          "712.600"
-        ],
-        answer: 2, // 712.006
-        steps: [
-          "<strong>Whole number:</strong> seven hundred twelve = 712.",
-          "<strong>'and':</strong> decimal point .",
-          "<strong>'six thousandths':</strong> thousandths is 3 decimal places. To have 6 in the thousandths place, you need 0 tenths and 0 hundredths: <strong>.006</strong>.",
-          "<strong>Standard form:</strong> <span class='font-mono font-bold text-indigo-700'>712.006</span>."
-        ],
-        trap: "712.6 is six tenths. 712.06 is six hundredths. 712.006 is six thousandths!"
-      },
-      {
-        id: 17,
-        category: "Forms of Decimals",
-        prompt: "What is <strong>5.084</strong> in expanded form using fractions?",
-        subtext: "Which places have non-zero digits?",
-        options: [
-          "(5 × 1) + (8 × 1/10) + (4 × 1/100)",
-          "(5 × 1) + (8 × 1/100) + (4 × 1/1,000)",
-          "(5 × 10) + (8 × 1/100) + (4 × 1/1,000)",
-          "(5 × 1) + (8 × 1/10) + (4 × 1/1,000)"
-        ],
-        answer: 1,
-        steps: [
-          "<strong>5</strong> is in ones place &rarr; (5 &times; 1)",
-          "<strong>0</strong> is in tenths place &rarr; skip",
-          "<strong>8</strong> is in hundredths place &rarr; (8 &times; <sup>1</sup>/<sub>100</sub>)",
-          "<strong>4</strong> is in thousandths place &rarr; (4 &times; <sup>1</sup>/<sub>1,000</sub>)",
-          "<strong>Sum:</strong> (5 &times; 1) + (8 &times; <sup>1</sup>/<sub>100</sub>) + (4 &times; <sup>1</sup>/<sub>1,000</sub>)."
-        ],
-        trap: "Make sure the 8 multiplies by 1/100, NOT 1/10!"
-      },
-      {
-        id: 18,
-        category: "Forms of Decimals",
-        prompt: "Which decimal represents <strong>sixteen and forty-two hundredths</strong>?",
-        subtext: "Standard decimal form.",
-        options: [
-          "16.42",
-          "16.042",
-          "16.4200",
-          "160.42"
-        ],
-        answer: 0, // 16.42
-        steps: [
-          "<strong>Sixteen:</strong> 16",
-          "<strong>and:</strong> .",
-          "<strong>forty-two hundredths:</strong> 42 hundredths ends in the hundredths spot &rarr; .42",
-          "<strong>Result:</strong> <span class='font-mono font-bold text-indigo-700'>16.42</span>."
-        ],
-        trap: "Hundredths has two digits after the decimal point: .42."
-      },
-      {
-        id: 19,
-        category: "Forms of Decimals",
-        prompt: "A science scale measured a sample as <strong>0.309</strong> grams. How is 0.309 written in number names?",
-        subtext: "Read the decimal digits and state the final place value.",
-        options: [
-          "Three hundred nine tenths",
-          "Three hundred nine hundredths",
-          "Three hundred nine thousandths",
-          "Thirty-nine thousandths"
-        ],
-        answer: 2, // Three hundred nine thousandths
-        steps: [
-          "<strong>Look at the digits after the decimal:</strong> 309 &rarr; 'three hundred nine'.",
-          "<strong>Find the place value of the last digit (9):</strong> 3rd decimal place is the <strong>thousandths</strong> place.",
-          "<strong>Combine:</strong> <span class='font-mono font-bold text-indigo-700'>three hundred nine thousandths</span>."
-        ],
-        trap: "There are 3 digits after the decimal dot, so it ends with 'thousandths'!"
-      },
-      {
-        id: 20,
-        category: "Forms of Decimals",
-        prompt: "Convert <span class='text-indigo-600 font-mono text-lg'>(9 × 1,000) + (2 × 10) + (5 × <sup>1</sup>/<sub>10</sub>) + (1 × <sup>1</sup>/<sub>1,000</sub>)</span> to standard form.",
-        subtext: "Check zeros for hundreds, ones, and hundredths.",
-        options: [
-          "9,020.501",
-          "9,200.51",
-          "9,020.51",
-          "9,20.501"
-        ],
-        answer: 0, // 9,020.501
-        steps: [
-          "<strong>Thousands:</strong> 9 &rarr; 9,000",
-          "<strong>Hundreds:</strong> None &rarr; 0",
-          "<strong>Tens:</strong> 2 &times; 10 &rarr; 20",
-          "<strong>Ones:</strong> None &rarr; 0 (Whole number is 9,020)",
-          "<strong>Tenths:</strong> 5 &times; <sup>1</sup>/<sub>10</sub> &rarr; .5",
-          "<strong>Hundredths:</strong> None &rarr; 0",
-          "<strong>Thousandths:</strong> 1 &times; <sup>1</sup>/<sub>1,000</sub> &rarr; 1",
-          "<strong>Answer:</strong> <span class='font-mono font-bold text-indigo-700'>9,020.501</span>."
-        ],
-        trap: "Don't forget the placeholder zero for hundreds (9,020) and for hundredths (.501)!"
-      },
-
-      // CATEGORY 3: COMPARING DECIMALS (Q21 - Q30)
-      {
-        id: 21,
-        category: "Comparing Decimals",
-        prompt: "Elaine has a piece of wire that is <strong>2.16 meters</strong> long. Dikembe has a piece of wire that is <strong>2.061 meters</strong> long. Whose wire is longer? How can you tell?",
-        subtext: "Compare 2.16 and 2.061 place by place.",
-        options: [
-          "Dikembe's wire is longer because 2.061 has more digits",
-          "Elaine's wire is longer because in the tenths place, 1 is greater than 0",
-          "Elaine's wire is longer because 16 is less than 61",
-          "Both wires are the exact same length"
-        ],
-        answer: 1,
-        steps: [
-          "<strong>Line up the decimal points and pad with zeros:</strong>",
-          "Elaine:  2 . 1 6 0",
-          "Dikembe: 2 . 0 6 1",
-          "<strong>Compare from left to right:</strong>",
-          "• Ones place: Both have 2 (equal).",
-          "• Tenths place: Elaine has <strong>1</strong> tenth, Dikembe has <strong>0</strong> tenths.",
-          "<strong>Since 1 > 0:</strong> Elaine's wire (2.16) is longer!"
-        ],
-        trap: "Eli, you got this right on your worksheet! Never just count digits—the tenths place (1) is 10 times bigger than hundredths (0)!"
-      },
-      {
-        id: 22,
-        category: "Comparing Decimals",
-        prompt: "Which comparison statement is <strong>TRUE</strong>?",
-        subtext: "Compare 4.15 and 4.051.",
-        options: [
-          "4.15 < 4.051",
-          "4.15 > 4.051",
-          "4.15 = 4.051",
-          "4.051 > 4.15"
-        ],
-        answer: 1, // 4.15 > 4.051
-        steps: [
-          "<strong>Pad with zero to equal length:</strong> 4.150 vs 4.051.",
-          "<strong>Compare whole numbers:</strong> 4 = 4.",
-          "<strong>Compare tenths:</strong> 4.150 has <strong>1</strong> tenth, while 4.051 has <strong>0</strong> tenths.",
-          "Since 1 > 0, <span class='font-mono font-bold text-indigo-700'>4.15 > 4.051</span> is TRUE!"
-        ],
-        trap: "4.051 has more digits, but 4.15 is larger because it has a 1 in the tenths place!"
-      },
-      {
-        id: 23,
-        category: "Comparing Decimals",
-        prompt: "Which comparison statement is <strong>TRUE</strong>?",
-        subtext: "Check 5.104 and 5.41.",
-        options: [
-          "5.104 > 5.41",
-          "5.014 > 5.41",
-          "5.104 < 5.41",
-          "5.41 < 5.104"
-        ],
-        answer: 2, // 5.104 < 5.41
-        steps: [
-          "<strong>Compare 5.104 and 5.410:</strong>",
-          "• Ones: 5 = 5.",
-          "• Tenths: 5.104 has 1 tenth, but 5.410 has <strong>4 tenths</strong>.",
-          "Since 1 < 4, <span class='font-mono font-bold text-indigo-700'>5.104 < 5.41</span> is true!"
-        ],
-        trap: "Always compare the tenths place first! 4 tenths beats 1 tenth every single time."
-      },
-      {
-        id: 24,
-        category: "Comparing Decimals",
-        prompt: "Luke shaded <strong>20 squares</strong> on his hundredths grid. Bekka shaded <strong>30 squares</strong> on her hundredths grid. Whose grid represents the larger decimal?",
-        subtext: "20 hundredths (0.20) vs 30 hundredths (0.30).",
-        options: [
-          "Luke's grid (0.20)",
-          "Bekka's grid (0.30)",
-          "They are equal",
-          "Cannot be determined"
-        ],
-        answer: 1, // Bekka's
-        steps: [
-          "<strong>Convert squares to decimals:</strong>",
-          "• Luke: 20 out of 100 squares = <sup>20</sup>/<sub>100</sub> = 0.20",
-          "• Bekka: 30 out of 100 squares = <sup>30</sup>/<sub>100</sub> = 0.30",
-          "<strong>Compare:</strong> 30 hundredths > 20 hundredths (0.30 > 0.20).",
-          "<strong>Conclusion:</strong> <span class='font-mono font-bold text-indigo-700'>Bekka's grid</span> is larger!"
-        ],
-        trap: "Great job on your paper identifying Bekka! 30 shaded squares is clearly more than 20 shaded squares."
-      },
-      {
-        id: 25,
-        category: "Comparing Decimals",
-        prompt: "Write two decimals that are <strong>equivalent to Luke's decimal</strong> (0.20).",
-        subtext: "Think about trailing zeros.",
-        options: [
-          "0.02 and 0.002",
-          "0.2 and 0.200",
-          "2.0 and 20.0",
-          "0.22 and 0.202"
-        ],
-        answer: 1, // 0.2 and 0.200
-        steps: [
-          "<strong>Luke's decimal is 0.20</strong> (twenty hundredths).",
-          "<strong>Drop unnecessary trailing zero:</strong> 0.20 = <strong>0.2</strong> (two tenths).",
-          "<strong>Add trailing zero:</strong> 0.20 = <strong>0.200</strong> (two hundred thousandths).",
-          "All three represent the exact same amount of a whole!"
-        ],
-        trap: "Eli, on your paper you wrote 0.2000000—which is also correct! The standard simplified equivalent forms are 0.2 and 0.200."
-      },
-      {
-        id: 26,
-        category: "Comparing Decimals",
-        prompt: "Which symbol makes this statement true? <br><span class='text-indigo-600 font-mono text-2xl'>0.75 _____ 0.705</span>",
-        subtext: "Compare 75 hundredths with 705 thousandths.",
-        options: [
-          ">",
-          "<",
-          "=",
-          "+"
-        ],
-        answer: 0, // >
-        steps: [
-          "<strong>Line up digits:</strong> 0.750 vs 0.705.",
-          "<strong>Tenths:</strong> Both have 7.",
-          "<strong>Hundredths:</strong> 0.750 has <strong>5</strong> hundredths, while 0.705 has <strong>0</strong> hundredths.",
-          "Since 5 > 0, <span class='font-mono font-bold text-indigo-700'>0.75 > 0.705</span>."
-        ],
-        trap: "705 sounds big, but 0.750 has 50 thousandths more than 0.705!"
-      },
-      {
-        id: 27,
-        category: "Comparing Decimals",
-        prompt: "Three swimmers finished a race in <strong>24.38 seconds, 24.308 seconds, and 24.4 seconds</strong>. Which time is the FASTEST (least amount of time)?",
-        subtext: "In a race, the smallest time wins!",
-        options: [
-          "24.38 seconds",
-          "24.308 seconds",
-          "24.4 seconds",
-          "They all tied"
-        ],
-        answer: 1, // 24.308 seconds
-        steps: [
-          "<strong>Pad all numbers to three decimal places:</strong>",
-          "• 24.380 s",
-          "• 24.308 s",
-          "• 24.400 s",
-          "<strong>Compare tenths:</strong> 24.400 has 4 tenths (slowest). Both 24.380 and 24.308 have 3 tenths.",
-          "<strong>Compare hundredths:</strong> 24.308 has <strong>0</strong> hundredths, while 24.380 has 8 hundredths.",
-          "Smallest number = <span class='font-mono font-bold text-indigo-700'>24.308 seconds</span>!"
-        ],
-        trap: "Fastest means the LEAST time, not the greatest number!"
-      },
-      {
-        id: 28,
-        category: "Comparing Decimals",
-        prompt: "Which of the following lists decimals ordered from <strong>LEAST to GREATEST</strong>?",
-        subtext: "Order: smallest to largest.",
-        options: [
-          "1.45, 1.405, 1.054, 1.045",
-          "1.045, 1.054, 1.405, 1.45",
-          "1.054, 1.045, 1.45, 1.405",
-          "1.045, 1.405, 1.054, 1.45"
-        ],
-        answer: 1,
-        steps: [
-          "<strong>Pad with zeros:</strong> 1.045, 1.054, 1.405, 1.450.",
-          "<strong>Compare numbers:</strong>",
-          "1. 1.045 (smallest: 0 tenths, 4 hundredths)",
-          "2. 1.054 (0 tenths, 5 hundredths)",
-          "3. 1.405 (4 tenths, 0 hundredths)",
-          "4. 1.450 (4 tenths, 5 hundredths - largest)",
-          "<strong>Correct order:</strong> 1.045 &rarr; 1.054 &rarr; 1.405 &rarr; 1.45."
-        ],
-        trap: "Look at tenths first: 1.045 and 1.054 are much smaller than 1.405 and 1.45!"
-      },
-      {
-        id: 29,
-        category: "Comparing Decimals",
-        prompt: "Which comparison is <strong>FALSE</strong>?",
-        subtext: "Find the one that is NOT true.",
-        options: [
-          "3.8 > 3.79",
-          "0.40 = 0.4",
-          "6.02 > 6.20",
-          "9.001 < 9.01"
-        ],
-        answer: 2, // 6.02 > 6.20 is FALSE
-        steps: [
-          "<strong>Check each option:</strong>",
-          "• 3.80 > 3.79 &rarr; True (80 > 79)",
-          "• 0.40 = 0.4 &rarr; True (equivalent decimals)",
-          "• 6.02 > 6.20 &rarr; <strong>FALSE!</strong> 6.02 has 0 tenths; 6.20 has 2 tenths. 6.02 is LESS than 6.20.",
-          "• 9.001 < 9.010 &rarr; True (1 thousandth < 10 thousandths)."
-        ],
-        trap: "Always read whether the question asks for TRUE or FALSE!"
-      },
-      {
-        id: 30,
-        category: "Comparing Decimals",
-        prompt: "Which decimal can be placed in the box to make the statement true? <br><span class='text-indigo-600 font-mono text-2xl'>7.2 < [ ? ] < 7.25</span>",
-        subtext: "Find a number that is greater than 7.20 and less than 7.25.",
-        options: [
-          "7.19",
-          "7.23",
-          "7.251",
-          "7.3"
-        ],
-        answer: 1, // 7.23
-        steps: [
-          "<strong>Add zero to 7.2:</strong> We need a number between <strong>7.20</strong> and <strong>7.25</strong>.",
-          "• 7.19 is less than 7.20 (No)",
-          "• 7.23 is between 7.20 and 7.25 (<strong>YES!</strong> 7.20 < 7.23 < 7.25)",
-          "• 7.251 is greater than 7.25 (No)",
-          "• 7.3 is 7.30, which is greater than 7.25 (No)."
-        ],
-        trap: "7.2 is the same as 7.20, so 7.23 sits right in between 7.20 and 7.25."
-      },
-
-      // CATEGORY 4: PATTERNS WITH POWERS OF 10 (Q31 - Q40)
-      {
-        id: 31,
-        category: "Patterns with Powers",
-        prompt: "The numbers below follow a pattern: <br><span class='text-indigo-600 font-mono text-2xl'>0.006, &nbsp; 0.06, &nbsp; 0.6, &nbsp; 6, &nbsp; [ &nbsp; ], &nbsp; [ &nbsp; ]</span><br>What are the next two numbers in the pattern?",
-        subtext: "Notice how the decimal point moves one place to the right each time.",
-        options: [
-          "6.0, 6.00",
-          "60, 600",
-          "16, 26",
-          "60, 60"
-        ],
-        answer: 1, // 60, 600
-        steps: [
-          "<strong>Analyze how each number changes:</strong>",
-          "• 0.006 &times; 10 = 0.06",
-          "• 0.06 &times; 10 = 0.6",
-          "• 0.6 &times; 10 = 6",
-          "<strong>Continue the pattern (&times;10 each step):</strong>",
-          "• 6 &times; 10 = <span class='font-mono font-bold text-indigo-700'>60</span>",
-          "• 60 &times; 10 = <span class='font-mono font-bold text-indigo-700'>600</span>."
-        ],
-        trap: "Eli, you nailed this exact question on your worksheet with 60 and 600! High five!"
-      },
-      {
-        id: 32,
-        category: "Patterns with Powers",
-        prompt: "What is the relationship between the terms in the pattern: <br><span class='text-indigo-600 font-mono text-xl'>0.006, &nbsp; 0.06, &nbsp; 0.6, &nbsp; 6, &nbsp; 60, &nbsp; 600</span>?",
-        subtext: "How do you get from one term to the next term?",
-        options: [
-          "Add 10 each time",
-          "Each term is 10 times greater than the previous term (multiply by 10)",
-          "Subtract 0.1 each time",
-          "Divide by 10 each time"
-        ],
-        answer: 1,
-        steps: [
-          "<strong>Look at what mathematically happens:</strong> 0.006 &times; 10 = 0.06, and 6 &times; 10 = 60.",
-          "<strong>Word description:</strong> It is not adding 10 (because 0.006 + 10 = 10.006).",
-          "<strong>Conclusion:</strong> <span class='font-mono font-bold text-indigo-700'>Each term is multiplied by 10</span> (or 10 times greater than the term before it)."
-        ],
-        trap: "In your handwritten note you wrote 'it goes up by 10'. In math tests, be specific: 'Each term is MULTIPLIED by 10' or 'is 10 times greater'!"
-      },
-      {
-        id: 33,
-        category: "Patterns with Powers",
-        prompt: "The numbers below follow a pattern: <br><span class='text-indigo-600 font-mono text-2xl'>800, &nbsp; 80, &nbsp; 8, &nbsp; 0.8, &nbsp; [ &nbsp; ], &nbsp; [ &nbsp; ]</span><br>What are the next two numbers in the pattern?",
-        subtext: "Each term is divided by 10 (or 1/10 of the previous term).",
-        options: [
-          "0.08, 0.008",
-          "0.80, 0.800",
-          "0.008, 0.0008",
-          "-8, -80"
-        ],
-        answer: 0, // 0.08, 0.008
-        steps: [
-          "<strong>Find the rule:</strong> 800 &divide; 10 = 80, 80 &divide; 10 = 8, 8 &divide; 10 = 0.8.",
-          "<strong>Apply rule to 0.8:</strong> 0.8 &divide; 10 = <span class='font-mono font-bold text-indigo-700'>0.08</span> (eight hundredths).",
-          "<strong>Apply rule to 0.08:</strong> 0.08 &divide; 10 = <span class='font-mono font-bold text-indigo-700'>0.008</span> (eight thousandths)."
-        ],
-        trap: "The decimal point shifts one place to the left each time you divide by 10!"
-      },
-      {
-        id: 34,
-        category: "Patterns with Powers",
-        prompt: "Find the product: <br><span class='text-indigo-600 font-mono text-2xl'>4.25 × 10<sup>2</sup> = _____</span>",
-        subtext: "Remember: 10^2 = 10 × 10 = 100.",
-        options: [
-          "42.5",
-          "425",
-          "4,250",
-          "0.0425"
-        ],
-        answer: 1, // 425
-        steps: [
-          "<strong>Interpret the exponent:</strong> 10<sup>2</sup> has an exponent of 2, which means 10 &times; 10 = 100.",
-          "<strong>Rule for multiplying by 10<sup>2</sup>:</strong> Shift the decimal point <strong>2 places to the right</strong>.",
-          "<strong>Shift:</strong> 4.25 &rarr; 42.5 (1 place) &rarr; <span class='font-mono font-bold text-indigo-700'>425</span> (2 places)."
-        ],
-        trap: "The exponent tells you the number of places to shift the decimal point to the right!"
-      },
-      {
-        id: 35,
-        category: "Patterns with Powers",
-        prompt: "Find the quotient: <br><span class='text-indigo-600 font-mono text-2xl'>63.4 ÷ 10<sup>1</sup> = _____</span>",
-        subtext: "Dividing by 10^1 shifts the decimal 1 place to the left.",
-        options: [
-          "634",
-          "6.34",
-          "0.634",
-          "63.40"
-        ],
-        answer: 1, // 6.34
-        steps: [
-          "<strong>Interpret the problem:</strong> 10<sup>1</sup> = 10. We are calculating 63.4 &divide; 10.",
-          "<strong>Shift direction:</strong> Dividing makes the number smaller, so move the decimal point <strong>1 place to the left</strong>.",
-          "<strong>Result:</strong> 63.4 &rarr; <span class='font-mono font-bold text-indigo-700'>6.34</span>."
-        ],
-        trap: "Multiplication moves the decimal to the RIGHT; Division moves it to the LEFT!"
-      },
-      {
-        id: 36,
-        category: "Patterns with Powers",
-        prompt: "Find the missing power of 10: <br><span class='text-indigo-600 font-mono text-2xl'>0.07 × _____ = 70</span>",
-        subtext: "How many places did the decimal move from 0.07 to 70?",
-        options: [
-          "10",
-          "100",
-          "1,000",
-          "10,000"
-        ],
-        answer: 2, // 1,000
-        steps: [
-          "<strong>Count the decimal shifts from 0.07:</strong>",
-          "• Move 1 place: 0.7 (&times;10)",
-          "• Move 2 places: 7 (&times;100)",
-          "• Move 3 places: 70 (&times;1,000)",
-          "<strong>Conclusion:</strong> 0.07 &times; <span class='font-mono font-bold text-indigo-700'>1,000</span> = 70."
-        ],
-        trap: "Count carefully! Getting from 0.07 to 7 is 100, so getting to 70 requires another 10 (1,000 total)!"
-      },
-      {
-        id: 37,
-        category: "Patterns with Powers",
-        prompt: "What is <span class='text-indigo-600 font-mono text-xl'>3.14 × 10<sup>3</sup></span>?",
-        subtext: "Shift decimal 3 places to the right.",
-        options: [
-          "31.4",
-          "314",
-          "3,140",
-          "31,400"
-        ],
-        answer: 2, // 3,140
-        steps: [
-          "<strong>Exponent is 3:</strong> Shift decimal 3 places to the right.",
-          "• 1st shift: 31.4",
-          "• 2nd shift: 314.",
-          "• 3rd shift: add a zero placeholder &rarr; <span class='font-mono font-bold text-indigo-700'>3,140</span>."
-        ],
-        trap: "When you run out of digits, append zeros! 3.14 &times; 1,000 = 3,140."
-      },
-      {
-        id: 38,
-        category: "Patterns with Powers",
-        prompt: "The numbers follow a pattern: <br><span class='text-indigo-600 font-mono text-xl'>0.009, &nbsp; 0.09, &nbsp; 0.9, &nbsp; 9, &nbsp; 90, &nbsp; 900</span>.<br>How many times greater is 90 than 0.9?",
-        subtext: "Count the number of 10x jumps between 0.9 and 90.",
-        options: [
-          "10 times",
-          "20 times",
-          "100 times",
-          "1,000 times"
-        ],
-        answer: 2, // 100 times
-        steps: [
-          "<strong>Look at the jumps:</strong>",
-          "• From 0.9 to 9 is 1 jump of &times;10.",
-          "• From 9 to 90 is another jump of &times;10.",
-          "<strong>Combine:</strong> 10 &times; 10 = <span class='font-mono font-bold text-indigo-700'>100 times</span> greater!",
-          "<strong>Check:</strong> 0.9 &times; 100 = 90. That's it!"
-        ],
-        trap: "Two jumps of 10 means 10 &times; 10 = 100, NOT 10 + 10 = 20!"
-      },
-      {
-        id: 39,
-        category: "Patterns with Powers",
-        prompt: "What is <span class='text-indigo-600 font-mono text-xl'>520 ÷ 10<sup>2</sup></span>?",
-        subtext: "Divide by 100.",
-        options: [
-          "52",
-          "5.2",
-          "0.52",
-          "5,200"
-        ],
-        answer: 1, // 5.2
-        steps: [
-          "<strong>10<sup>2</sup> = 100:</strong> 520 &divide; 100.",
-          "<strong>Shift decimal 2 places left from the end of 520:</strong>",
-          "• 1st shift: 52.0",
-          "• 2nd shift: <span class='font-mono font-bold text-indigo-700'>5.20 (or 5.2)</span>."
-        ],
-        trap: "520 has an invisible decimal point at the very end: 520. Move it two places left to get 5.2!"
-      },
-      {
-        id: 40,
-        category: "Patterns with Powers",
-        prompt: "Complete the pattern: <br><span class='text-indigo-600 font-mono text-xl'>0.015, &nbsp; 0.15, &nbsp; 1.5, &nbsp; 15, &nbsp; [ &nbsp; ]</span>",
-        subtext: "What comes right after 15?",
-        options: [
-          "15.0",
-          "150",
-          "1,500",
-          "16"
-        ],
-        answer: 1, // 150
-        steps: [
-          "<strong>Identify the rule:</strong> Each term is multiplied by 10.",
-          "• 0.015 &times; 10 = 0.15",
-          "• 0.15 &times; 10 = 1.5",
-          "• 1.5 &times; 10 = 15",
-          "• 15 &times; 10 = <span class='font-mono font-bold text-indigo-700'>150</span>."
-        ],
-        trap: "15 &times; 10 = 150!"
-      },
-
-      // CATEGORY 5: ROUNDING DECIMALS (Q41 - Q50)
-      {
-        id: 41,
-        category: "Rounding Decimals",
-        prompt: "Kendra and her horse completed the barrel racing course in <strong>15.839 seconds</strong>. What is this number rounded to the <strong>nearest tenth</strong>?",
-        subtext: "Look at the digit in the hundredths place to decide.",
-        options: [
-          "15.8",
-          "15.84",
-          "15.9",
-          "16.0"
-        ],
-        answer: 0, // 15.8
-        steps: [
-          "<strong>Find the rounding place:</strong> Nearest <strong>tenth</strong> &rarr; the digit in the tenths place is <strong>8</strong>.",
-          "<strong>Look at the digit immediately to the right:</strong> The digit in the hundredths place is <strong>3</strong>.",
-          "<strong>Use rounding rules:</strong> If the test digit is less than 5 (3 < 5), leave the rounding digit alone!",
-          "<strong>Drop all digits to the right:</strong> The result is <span class='font-mono font-bold text-indigo-700'>15.8</span>."
-        ],
-        trap: "Eli, on your paper you wrote '15.800'. 15.800 has the exact same value, but when rounding to tenths, teachers prefer just one decimal digit: 15.8 (drop trailing zeros)!"
-      },
-      {
-        id: 42,
-        category: "Rounding Decimals",
-        prompt: "Round <strong>15.839</strong> to the <strong>nearest hundredth</strong>.",
-        subtext: "Look at the digit in the thousandths place to decide.",
-        options: [
-          "15.83",
-          "15.84",
-          "15.8",
-          "15.90"
-        ],
-        answer: 1, // 15.84
-        steps: [
-          "<strong>Find the rounding place:</strong> The hundredths digit is <strong>3</strong>.",
-          "<strong>Look at the digit to the right:</strong> The thousandths digit is <strong>9</strong>.",
-          "<strong>Apply the rule:</strong> Since 9 &ge; 5, round UP! Add 1 to 3 &rarr; 4.",
-          "<strong>Result:</strong> <span class='font-mono font-bold text-indigo-700'>15.84</span>."
-        ],
-        trap: "Because 9 is 5 or greater, round the 3 up to 4!"
-      },
-      {
-        id: 43,
-        category: "Rounding Decimals",
-        prompt: "Round <strong>15.839</strong> to the <strong>nearest whole number</strong> (ones place).",
-        subtext: "Look at the tenths digit (8).",
-        options: [
-          "15",
-          "16",
-          "15.8",
-          "20"
-        ],
-        answer: 1, // 16
-        steps: [
-          "<strong>Target place:</strong> Ones place digit is <strong>5</strong>.",
-          "<strong>Look at the tenths digit:</strong> <strong>8</strong>.",
-          "<strong>Rule:</strong> 8 is 5 or more, so round 15 UP to <span class='font-mono font-bold text-indigo-700'>16</span>."
-        ],
-        trap: "15.839 is closer to 16 than it is to 15!"
-      },
-      {
-        id: 44,
-        category: "Rounding Decimals",
-        prompt: "A sack of flour weighs <strong>4.675 kilograms</strong>. Round this weight to the <strong>nearest hundredth</strong>.",
-        subtext: "Check the thousandths digit (5).",
-        options: [
-          "4.67",
-          "4.68",
-          "4.7",
-          "5.0"
-        ],
-        answer: 1, // 4.68
-        steps: [
-          "<strong>Target place:</strong> Hundredths digit is <strong>7</strong>.",
-          "<strong>Look to the right:</strong> Thousandths digit is <strong>5</strong>.",
-          "<strong>Rule:</strong> '5 or more, raise the score!' Round 7 up to 8.",
-          "<strong>Result:</strong> <span class='font-mono font-bold text-indigo-700'>4.68 kg</span>."
-        ],
-        trap: "When the test digit is 5, always round UP!"
-      },
-      {
-        id: 45,
-        category: "Rounding Decimals",
-        prompt: "Round <strong>0.962</strong> to the <strong>nearest tenth</strong>.",
-        subtext: "Notice what happens when 9 rounds up!",
-        options: [
-          "0.9",
-          "0.96",
-          "1.0",
-          "1.9"
-        ],
-        answer: 2, // 1.0
-        steps: [
-          "<strong>Target place:</strong> Tenths digit is <strong>9</strong>.",
-          "<strong>Look to the right:</strong> Hundredths digit is <strong>6</strong>.",
-          "<strong>Rule:</strong> Since 6 &ge; 5, round 9 up. 9 + 1 = 10 tenths = 1 whole.",
-          "<strong>Result:</strong> <span class='font-mono font-bold text-indigo-700'>1.0</span>."
-        ],
-        trap: "Rounding 0.9 up rolls over to 1.0! Include the .0 to show it was rounded to tenths."
-      },
-      {
-        id: 46,
-        category: "Rounding Decimals",
-        prompt: "Which number rounds to <strong>7.4</strong> when rounded to the nearest tenth?",
-        subtext: "Test each choice by rounding to the tenths place.",
-        options: [
-          "7.48",
-          "7.32",
-          "7.43",
-          "7.34"
-        ],
-        answer: 2, // 7.43
-        steps: [
-          "<strong>Test each number rounded to nearest tenth:</strong>",
-          "• 7.48 &rarr; 8 rounds 4 up to 7.5",
-          "• 7.32 &rarr; 2 rounds down to 7.3",
-          "• 7.43 &rarr; 3 is less than 5, so 4 stays as 4 &rarr; <strong>7.4</strong>!",
-          "• 7.34 &rarr; 4 is less than 5 &rarr; 7.3.",
-          "<strong>Correct answer:</strong> <span class='font-mono font-bold text-indigo-700'>7.43</span>."
-        ],
-        trap: "Any number from 7.35 up to 7.44 rounds to 7.4!"
-      },
-      {
-        id: 47,
-        category: "Rounding Decimals",
-        prompt: "Round <strong>28.049</strong> to the <strong>nearest tenth</strong>.",
-        subtext: "Look at the hundredths digit.",
-        options: [
-          "28.0",
-          "28.1",
-          "28.05",
-          "28"
-        ],
-        answer: 0, // 28.0
-        steps: [
-          "<strong>Target place:</strong> Tenths digit is <strong>0</strong>.",
-          "<strong>Look to the right:</strong> Hundredths digit is <strong>4</strong>.",
-          "<strong>Rule:</strong> 4 is less than 5 (4 < 5), so the 0 stays as 0.",
-          "<strong>Result:</strong> <span class='font-mono font-bold text-indigo-700'>28.0</span>."
-        ],
-        trap: "Do not look at the 9 in the thousandths place! ONLY look at the single digit directly to the right of the tenths place (the 4)!"
-      },
-      {
-        id: 48,
-        category: "Rounding Decimals",
-        prompt: "Round <strong>9.996</strong> to the <strong>nearest hundredth</strong>.",
-        subtext: "A cascading round-up!",
-        options: [
-          "9.99",
-          "10.00",
-          "9.90",
-          "10.0"
-        ],
-        answer: 1, // 10.00
-        steps: [
-          "<strong>Target place:</strong> Hundredths digit is <strong>9</strong>.",
-          "<strong>Look to the right:</strong> Thousandths digit is <strong>6</strong>.",
-          "<strong>Since 6 &ge; 5:</strong> Round the hundredths 9 up to 10.",
-          "<strong>Carry over:</strong> The tenths 9 becomes 10, which carries into the ones place to make 9 become 10.",
-          "<strong>Result:</strong> <span class='font-mono font-bold text-indigo-700'>10.00</span>."
-        ],
-        trap: "Keep the two zeros (10.00) to prove you rounded to the hundredths place!"
-      },
-      {
-        id: 49,
-        category: "Rounding Decimals",
-        prompt: "A race car lap was <strong>58.742 seconds</strong>. How do you round this to the nearest tenth?",
-        subtext: "Step-by-step logic check.",
-        options: [
-          "58.8 because the 2 rounds the 4 up to 5, which rounds the 7 to 8",
-          "58.7 because the hundredths digit 4 is less than 5",
-          "59.0 because 58 rounds up",
-          "58.74 because you keep two decimal places"
-        ],
-        answer: 1,
-        steps: [
-          "<strong>Find the rounding digit:</strong> Tenths digit is 7.",
-          "<strong>Find the decision digit:</strong> The very next digit to the right is 4.",
-          "<strong>Rule:</strong> Since 4 is less than 5, you DO NOT round up. The 7 stays 7.",
-          "<strong>Final Answer:</strong> <span class='font-mono font-bold text-indigo-700'>58.7</span>."
-        ],
-        trap: "Never 'double round'! You only look at the 4 right after 7. You ignore the 2 completely."
-      },
-      {
-        id: 50,
-        category: "Rounding Decimals",
-        prompt: "Round <strong>124.518</strong> to the <strong>nearest whole number</strong>, <strong>nearest tenth</strong>, and <strong>nearest hundredth</strong>.",
-        subtext: "Match all three roundings!",
-        options: [
-          "Whole: 125 &nbsp;|&nbsp; Tenth: 124.5 &nbsp;|&nbsp; Hundredth: 124.52",
-          "Whole: 124 &nbsp;|&nbsp; Tenth: 124.5 &nbsp;|&nbsp; Hundredth: 124.51",
-          "Whole: 125 &nbsp;|&nbsp; Tenth: 124.6 &nbsp;|&nbsp; Hundredth: 124.52",
-          "Whole: 124 &nbsp;|&nbsp; Tenth: 125.0 &nbsp;|&nbsp; Hundredth: 124.50"
-        ],
-        answer: 0,
-        steps: [
-          "<strong>1. Nearest whole number:</strong> 124.5 &rarr; 5 rounds 124 UP to <strong>125</strong>.",
-          "<strong>2. Nearest tenth:</strong> 124.51 &rarr; 1 < 5, so tenths stays <strong>124.5</strong>.",
-          "<strong>3. Nearest hundredth:</strong> 124.518 &rarr; 8 &ge; 5, so 1 rounds up to 2 &rarr; <strong>124.52</strong>.",
-          "<strong>All three correct:</strong> <span class='font-mono font-bold text-indigo-700'>125, 124.5, 124.52</span>!"
-        ],
-        trap: "Congratulations Eli, you've conquered all 50 practice problems for Topic 1!"
-      }
+    // Exactly 40 clean whole-number division facts with no remainders (Free Response)
+    const examQuestions = [
+      { id: 1, text: "54 ÷ 6", ans: 9, hint: "6 × 9 = 54" },
+      { id: 2, text: "64 ÷ 8", ans: 8, hint: "8 × 8 = 64" },
+      { id: 3, text: "77 ÷ 7", ans: 11, hint: "7 × 11 = 77" },
+      { id: 4, text: "96 ÷ 12", ans: 8, hint: "12 × 8 = 96" },
+      { id: 5, text: "63 ÷ 9", ans: 7, hint: "9 × 7 = 63" },
+      { id: 6, text: "48 ÷ 8", ans: 6, hint: "8 × 6 = 48" },
+      { id: 7, text: "108 ÷ 9", ans: 12, hint: "9 × 12 = 108" },
+      { id: 8, text: "84 ÷ 7", ans: 12, hint: "7 × 12 = 84" },
+      { id: 9, text: "132 ÷ 11", ans: 12, hint: "11 × 12 = 132" },
+      { id: 10, text: "72 ÷ 6", ans: 12, hint: "6 × 12 = 72" },
+      { id: 11, text: "42 ÷ 7", ans: 6, hint: "7 × 6 = 42" },
+      { id: 12, text: "81 ÷ 9", ans: 9, hint: "9 × 9 = 81" },
+      { id: 13, text: "56 ÷ 8", ans: 7, hint: "8 × 7 = 56" },
+      { id: 14, text: "120 ÷ 10", ans: 12, hint: "10 × 12 = 120" },
+      { id: 15, text: "36 ÷ 6", ans: 6, hint: "6 × 6 = 36" },
+      { id: 16, text: "99 ÷ 9", ans: 11, hint: "9 × 11 = 99" },
+      { id: 17, text: "45 ÷ 5", ans: 9, hint: "5 × 9 = 45" },
+      { id: 18, text: "72 ÷ 8", ans: 9, hint: "8 × 9 = 72" },
+      { id: 19, text: "144 ÷ 12", ans: 12, hint: "12 × 12 = 144" },
+      { id: 20, text: "35 ÷ 7", ans: 5, hint: "7 × 5 = 35" },
+      { id: 21, text: "60 ÷ 5", ans: 12, hint: "5 × 12 = 60" },
+      { id: 22, text: "54 ÷ 9", ans: 6, hint: "9 × 6 = 54" },
+      { id: 23, text: "48 ÷ 6", ans: 8, hint: "6 × 8 = 48" },
+      { id: 24, text: "88 ÷ 8", ans: 11, hint: "8 × 11 = 88" },
+      { id: 25, text: "70 ÷ 7", ans: 10, hint: "7 × 10 = 70" },
+      { id: 26, text: "121 ÷ 11", ans: 11, hint: "11 × 11 = 121" },
+      { id: 27, text: "32 ÷ 4", ans: 8, hint: "4 × 8 = 32" },
+      { id: 28, text: "90 ÷ 9", ans: 10, hint: "9 × 10 = 90" },
+      { id: 29, text: "63 ÷ 7", ans: 9, hint: "7 × 9 = 63" },
+      { id: 30, text: "84 ÷ 12", ans: 7, hint: "12 × 7 = 84" },
+      { id: 31, text: "56 ÷ 7", ans: 8, hint: "7 × 8 = 56" },
+      { id: 32, text: "110 ÷ 11", ans: 10, hint: "11 × 10 = 110" },
+      { id: 33, text: "40 ÷ 8", ans: 5, hint: "8 × 5 = 40" },
+      { id: 34, text: "96 ÷ 8", ans: 12, hint: "8 × 12 = 96" },
+      { id: 35, text: "108 ÷ 12", ans: 9, hint: "12 × 9 = 108" },
+      { id: 36, text: "36 ÷ 4", ans: 9, hint: "4 × 9 = 36" },
+      { id: 37, text: "66 ÷ 6", ans: 11, hint: "6 × 11 = 66" },
+      { id: 38, text: "72 ÷ 9", ans: 8, hint: "9 × 8 = 72" },
+      { id: 39, text: "120 ÷ 12", ans: 10, hint: "12 × 10 = 120" },
+      { id: 40, text: "132 ÷ 12", ans: 11, hint: "12 × 11 = 132" }
     ];
 
-    let currentIdx = 0;
-    let selectedAnswers = new Array(questions.length).fill(null);
-    let checkedStatus = new Array(questions.length).fill(false);
-    let currentCategoryFilter = "All";
-    let isSoundEnabled = true;
-    let currentStreak = 0;
-    let maxStreak = 0;
-    let audioCtx = null;
+    const userAnswers = {};
+    const userWork = {};
+    const submittedQuestions = {};
+    let isGraded = false;
+    let timerSeconds = 0;
+    let timerInterval = null;
 
-    // Scratchpad variables
-    let isDrawing = false;
-    let scratchpadCanvas = null;
-    let scratchpadCtx = null;
-    let currentColor = '#1e293b';
-
-    function getAudioContext() {
-      if (!audioCtx) {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        audioCtx = new AudioContext();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      return audioCtx;
-    }
-
-    function playTone(freq, duration = 0.15, type = 'sine') {
-      if (!isSoundEnabled) return;
-      try {
-        const ctx = getAudioContext();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        gain.gain.setValueAtTime(0.12, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + duration);
-      } catch (e) {
-        console.log("Audio not allowed yet:", e);
-      }
-    }
-
-    function playSuccessSound() {
-      if (!isSoundEnabled) return;
-      playTone(523.25, 0.1, 'triangle'); // C5
-      setTimeout(() => playTone(659.25, 0.12, 'triangle'), 100); // E5
-      setTimeout(() => playTone(783.99, 0.25, 'sine'), 220); // G5
-    }
-
-    function playErrorSound() {
-      if (!isSoundEnabled) return;
-      playTone(330, 0.15, 'sawtooth');
-      setTimeout(() => playTone(270, 0.25, 'sawtooth'), 120);
-    }
-
-    function toggleSound() {
-      isSoundEnabled = !isSoundEnabled;
-      document.getElementById('sound-icon').textContent = isSoundEnabled ? '🔊' : '🔇';
-    }
-
-    function launchConfetti() {
-      const canvas = document.getElementById('confetti-canvas');
-      const ctx = canvas.getContext('2d');
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-
-      const particles = [];
-      const colors = ['#6366f1', '#ec4899', '#f59e0b', '#10b981', '#3b82f6'];
-
-      for (let i = 0; i < 60; i++) {
-        particles.push({
-          x: canvas.width / 2,
-          y: canvas.height * 0.4,
-          vx: (Math.random() - 0.5) * 16,
-          vy: (Math.random() - 0.8) * 16,
-          size: Math.random() * 8 + 4,
-          color: colors[Math.floor(Math.random() * colors.length)],
-          rotation: Math.random() * 360,
-          rotationSpeed: (Math.random() - 0.5) * 10,
-          life: 80
-        });
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        let active = false;
-        particles.forEach(p => {
-          if (p.life > 0) {
-            active = true;
-            p.x += p.vx;
-            p.y += p.vy;
-            p.vy += 0.4; // gravity
-            p.rotation += p.rotationSpeed;
-            p.life--;
-            ctx.save();
-            ctx.translate(p.x, p.y);
-            ctx.rotate((p.rotation * Math.PI) / 180);
-            ctx.fillStyle = p.color;
-            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
-            ctx.restore();
-          }
-        });
-        if (active) {
-          requestAnimationFrame(animate);
-        } else {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (!isGraded) {
+          timerSeconds++;
+          const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+          const secs = String(timerSeconds % 60).padStart(2, '0');
+          document.getElementById('timer-display').innerText = `${mins}:${secs}`;
         }
-      }
-      animate();
+      }, 1000);
     }
 
-    function renderQuestion(idx) {
-      currentIdx = idx;
-      const q = questions[idx];
+    function renderQuestions() {
+      const grid = document.getElementById('questions-grid');
+      grid.innerHTML = '';
 
-      // Update Card Meta
-      document.getElementById('card-q-number').textContent = q.id;
-      document.getElementById('card-q-category').textContent = q.category;
-      document.getElementById('card-q-text').innerHTML = q.prompt;
-      document.getElementById('card-q-subtext').textContent = q.subtext || '';
+      examQuestions.forEach(q => {
+        const isSubmitted = !!submittedQuestions[q.id];
+        const card = document.createElement('div');
+        card.id = `card-${q.id}`;
+        card.className = "exam-card bg-white p-5 rounded-2xl border border-slate-200 shadow-sm transition relative flex flex-col justify-between";
 
-      // Update Navigation Buttons
-      document.getElementById('prev-btn').disabled = (idx === 0);
-      document.getElementById('next-btn').disabled = (idx === questions.length - 1);
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Question ${q.id} of 40</span>
+              <span id="badge-${q.id}" class="hidden text-[11px] font-bold px-2.5 py-0.5 rounded-full"></span>
+            </div>
+            
+            <div class="flex items-center justify-between gap-4 p-4 bg-slate-50/80 rounded-2xl border border-slate-200/80">
+              <div class="text-2xl sm:text-3xl font-extrabold text-slate-800 math-font tracking-wide">
+                ${q.text} =
+              </div>
+              <div class="flex items-center">
+                <input 
+                  type="number" 
+                  id="input-${q.id}" 
+                  inputmode="numeric"
+                  pattern="[0-9]*"
+                  placeholder="?" 
+                  autocomplete="off"
+                  oninput="handleAnswerInput(${q.id}, this.value)"
+                  onkeydown="if(event.key === 'Enter') submitSingleQuestion(${q.id})"
+                  class="fr-screen-input math-font text-center font-bold text-2xl w-24 sm:w-28 py-2 px-3 rounded-xl border-2 border-slate-300 focus:border-indigo-600 focus:ring-4 focus:ring-indigo-100 focus:outline-none transition shadow-sm text-slate-900 bg-white"
+                />
+                <span class="fr-print-line font-mono text-xl tracking-wider text-slate-900 font-bold">
+                  ______
+                </span>
+              </div>
+            </div>
 
-      // Render Options
-      const optionsContainer = document.getElementById('options-container');
-      optionsContainer.innerHTML = '';
+            <!-- MANDATORY REMINDER TO SHOW WORK -->
+            <div class="mt-3.5 pt-3 border-t border-slate-200">
+              <div class="flex items-center gap-1.5 text-xs font-bold text-amber-800 bg-amber-50 px-2.5 py-1.5 rounded-lg border border-amber-200">
+                <span>✏️</span>
+                <span>Reminder: Eli, show your work for this question!</span>
+              </div>
+              
+              <!-- Screen work area -->
+              <div class="no-print mt-2">
+                <label for="work-${q.id}" class="block text-[11px] font-semibold text-slate-500 mb-1">
+                  Work / Inverse Multiplication Check:
+                </label>
+                <input 
+                  type="text" 
+                  id="work-${q.id}" 
+                  placeholder="e.g., show steps or inverse multiplication check..." 
+                  autocomplete="off"
+                  oninput="userWork[${q.id}] = this.value"
+                  onkeydown="if(event.key === 'Enter') submitSingleQuestion(${q.id})"
+                  class="w-full text-xs font-mono py-1.5 px-3 rounded-lg border border-slate-200 bg-slate-50/70 text-slate-800 focus:bg-white focus:border-amber-400 focus:ring-2 focus:ring-amber-100 focus:outline-none transition"
+                />
+              </div>
 
-      q.options.forEach((optText, optIdx) => {
-        const isSelected = selectedAnswers[idx] === optIdx;
-        const isChecked = checkedStatus[idx];
-        const isCorrect = optIdx === q.answer;
+              <!-- Printable show-work area -->
+              <div class="print-only mt-2 h-16 border border-dashed border-slate-400 rounded-lg p-2 text-[9px] text-slate-500 font-mono">
+                Show work / inverse multiplication steps:
+              </div>
+            </div>
 
-        let styleClasses = "border-slate-200 bg-white hover:border-indigo-400 hover:bg-indigo-50/40 text-slate-800";
-
-        if (isChecked) {
-          if (isCorrect) {
-            styleClasses = "border-emerald-500 bg-emerald-50 text-emerald-950 ring-2 ring-emerald-500/20";
-          } else if (isSelected && !isCorrect) {
-            styleClasses = "border-rose-400 bg-rose-50 text-rose-950";
-          } else {
-            styleClasses = "border-slate-200 bg-white opacity-60 text-slate-500";
-          }
-        } else if (isSelected) {
-          styleClasses = "border-indigo-600 bg-indigo-50 text-indigo-950 ring-2 ring-indigo-500/20";
-        }
-
-        const letter = String.fromCharCode(65 + optIdx);
-        const optButton = document.createElement('button');
-        optButton.className = `p-4 rounded-2xl border text-left font-medium transition flex items-start gap-3 w-full shadow-xs ${styleClasses}`;
-        optButton.onclick = () => selectOption(optIdx);
-
-        optButton.innerHTML = `
-          <span class="w-6 h-6 rounded-lg ${isSelected ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600'} font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">${letter}</span>
-          <span class="text-sm md:text-base leading-relaxed flex-1">${optText}</span>
-          ${isChecked && isCorrect ? '<span class="text-emerald-600 font-bold text-base">✓</span>' : ''}
-          ${isChecked && isSelected && !isCorrect ? '<span class="text-rose-500 font-bold text-base">✕</span>' : ''}
+            <!-- Individual Submit Row (One-by-One) -->
+            <div class="no-print mt-3.5 pt-2.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
+              <div id="hint-msg-${q.id}" class="text-[11px] font-semibold text-rose-500 min-h-[16px]"></div>
+              <button 
+                type="button"
+                id="btn-sub-${q.id}" 
+                onclick="submitSingleQuestion(${q.id})" 
+                class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition active:scale-95 flex items-center gap-1.5 ml-auto"
+              >
+                <span>Submit Question ${q.id}</span> ➔
+              </button>
+            </div>
+          </div>
+          <div>
+            <div id="explanation-${q.id}" class="hidden mt-3 p-3 bg-slate-50 rounded-xl text-xs border">
+              <!-- Explanation displayed after submission -->
+            </div>
+          </div>
         `;
-        optionsContainer.appendChild(optButton);
+
+        grid.appendChild(card);
       });
+    }
 
-      // Update Explanation Panel
-      const explPanel = document.getElementById('explanation-panel');
-      const isChecked = checkedStatus[idx];
+    function handleAnswerInput(qid, rawVal) {
+      if (submittedQuestions[qid] || isGraded) return;
 
-      if (isChecked) {
-        showExplanationContent(q, selectedAnswers[idx] === q.answer);
+      const trimmed = rawVal.trim();
+      const hintMsg = document.getElementById(`hint-msg-${qid}`);
+      if (hintMsg) hintMsg.innerText = '';
+
+      if (trimmed === "") {
+        delete userAnswers[qid];
       } else {
-        explPanel.classList.add('hidden');
-        document.getElementById('explanation-toggle-text').textContent = "Show Step-by-Step Solution";
+        const parsed = parseInt(trimmed, 10);
+        if (!isNaN(parsed)) {
+          userAnswers[qid] = parsed;
+        } else {
+          delete userAnswers[qid];
+        }
       }
 
-      // Update Category Coach Tip
-      updateCoachTip(q.category);
-
-      // Update Header Progress
-      updateProgress();
+      const inputEl = document.getElementById(`input-${qid}`);
+      if (inputEl) {
+        if (userAnswers[qid] !== undefined) {
+          inputEl.classList.add("border-indigo-600", "bg-indigo-50/20");
+        } else {
+          inputEl.classList.remove("border-indigo-600", "bg-indigo-50/20");
+        }
+      }
     }
 
-    function selectOption(optIdx) {
-      if (checkedStatus[currentIdx]) return; // lock once checked
-      selectedAnswers[currentIdx] = optIdx;
-      playTone(400, 0.05, 'sine');
-      renderQuestion(currentIdx);
-    }
+    function submitSingleQuestion(qid) {
+      if (submittedQuestions[qid] || isGraded) return;
 
-    function checkCurrentAnswer() {
-      const q = questions[currentIdx];
-      const selected = selectedAnswers[currentIdx];
+      const q = examQuestions.find(item => item.id === qid);
+      const studentAns = userAnswers[qid];
+      const hintMsg = document.getElementById(`hint-msg-${qid}`);
 
-      if (selected === null) {
-        showCoachMessage("Please select an answer first, Eli! You've got this!");
-        playTone(250, 0.1, 'sawtooth');
+      // Require Eli to enter an answer first
+      if (studentAns === undefined || isNaN(studentAns)) {
+        if (hintMsg) hintMsg.innerText = '⚠️ Please enter Eli\'s quotient first!';
+        const inputEl = document.getElementById(`input-${qid}`);
+        if (inputEl) inputEl.focus();
         return;
       }
 
-      checkedStatus[currentIdx] = true;
-      const isCorrect = (selected === q.answer);
+      if (hintMsg) hintMsg.innerText = '';
+      submittedQuestions[qid] = true;
 
+      // Lock inputs for this question
+      const inputEl = document.getElementById(`input-${qid}`);
+      const workEl = document.getElementById(`work-${qid}`);
+      const card = document.getElementById(`card-${qid}`);
+      const badge = document.getElementById(`badge-${qid}`);
+      const subBtn = document.getElementById(`btn-sub-${qid}`);
+      const explanationEl = document.getElementById(`explanation-${qid}`);
+
+      if (inputEl) inputEl.disabled = true;
+      if (workEl) workEl.disabled = true;
+
+      // Update the question's submit button
+      if (subBtn) {
+        subBtn.disabled = true;
+        subBtn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-400 border border-slate-200 cursor-default flex items-center gap-1 ml-auto";
+        subBtn.innerHTML = "<span>Submitted</span> ✓";
+      }
+
+      // Check correctness
+      const isCorrect = (studentAns === q.ans);
+
+      // Display question badge & card border styling
+      badge.classList.remove('hidden');
       if (isCorrect) {
-        currentStreak++;
-        if (currentStreak > maxStreak) maxStreak = currentStreak;
-        playSuccessSound();
-        launchConfetti();
+        badge.innerText = "✓ Correct";
+        badge.className = "text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300";
+        card.classList.add("border-emerald-300", "bg-emerald-50/20");
+        if (inputEl) {
+          inputEl.className = "fr-screen-input math-font text-center font-bold text-2xl w-24 sm:w-28 py-2 px-3 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-900 shadow-sm cursor-default";
+        }
       } else {
-        currentStreak = 0;
-        playErrorSound();
+        badge.innerText = "✗ Incorrect";
+        badge.className = "text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-300";
+        card.classList.add("border-rose-300", "bg-rose-50/20");
+        if (inputEl) {
+          inputEl.className = "fr-screen-input math-font text-center font-bold text-2xl w-24 sm:w-28 py-2 px-3 rounded-xl border-2 border-rose-400 bg-rose-50 text-rose-900 shadow-sm cursor-default";
+        }
       }
 
-      renderQuestion(currentIdx);
-      document.getElementById('explanation-panel').classList.remove('hidden');
-      document.getElementById('explanation-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function showExplanationContent(q, isCorrect) {
-      const panel = document.getElementById('explanation-panel');
-      const badge = document.getElementById('feedback-badge');
-      const stepsList = document.getElementById('explanation-steps');
-      const trapText = document.getElementById('trap-text');
-
-      panel.classList.remove('hidden');
-
+      // Reveal explanation immediately for this question
+      explanationEl.classList.remove('hidden');
       if (isCorrect) {
-        badge.className = "text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider bg-emerald-100 text-emerald-800";
-        badge.textContent = "Great Job Eli! Correct!";
+        explanationEl.className = "mt-3 p-3 bg-emerald-50 rounded-xl text-xs border border-emerald-200 text-emerald-900 leading-relaxed";
+        explanationEl.innerHTML = `
+          <div class="flex items-center gap-1.5 font-bold mb-0.5">
+            <span>🎯</span> Eli's Answer: <span class="math-font text-sm">${studentAns}</span> (Correct!)
+          </div>
+          <div>Great job! <strong>${q.text} = ${q.ans}</strong> because <strong>${q.hint}</strong>.</div>
+        `;
       } else {
-        badge.className = "text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider bg-rose-100 text-rose-800";
-        badge.textContent = "Nice Try! Let's Review The Steps:";
+        explanationEl.className = "mt-3 p-3 bg-rose-50 rounded-xl text-xs border border-rose-200 text-rose-900 leading-relaxed";
+        explanationEl.innerHTML = `
+          <div class="flex items-center gap-2 font-bold mb-1">
+            <span>Eli's Answer: <span class="line-through text-rose-700">${studentAns}</span></span>
+            <span class="text-emerald-700">• Correct Quotient: <span class="math-font text-sm underline">${q.ans}</span></span>
+          </div>
+          <div>Remember: <strong>${q.text} = ${q.ans}</strong> because <strong>${q.hint}</strong>.</div>
+        `;
       }
 
-      stepsList.innerHTML = q.steps.map(step => `
-        <div class="flex items-start gap-2.5 bg-white p-3 rounded-xl border border-indigo-100/60 shadow-xs">
-          <span class="text-indigo-600 font-bold text-xs mt-0.5">•</span>
-          <div class="leading-relaxed text-slate-800">${step}</div>
-        </div>
-      `).join('');
+      updateLiveProgress();
 
-      trapText.textContent = q.trap || "Double check place values and read carefully!";
+      // Check if all 40 questions are submitted
+      const submittedCount = Object.keys(submittedQuestions).length;
+      if (submittedCount === examQuestions.length) {
+        finalizeGrading();
+      }
     }
 
-    function toggleExplanation() {
-      const panel = document.getElementById('explanation-panel');
-      const q = questions[currentIdx];
-      if (panel.classList.contains('hidden')) {
-        showExplanationContent(q, selectedAnswers[currentIdx] === q.answer);
+    function updateLiveProgress() {
+      const submittedCount = Object.keys(submittedQuestions).length;
+      let correctSoFar = 0;
+
+      examQuestions.forEach(q => {
+        if (submittedQuestions[q.id] && userAnswers[q.id] === q.ans) {
+          correctSoFar++;
+        }
+      });
+
+      document.getElementById('answered-counter').innerText = submittedCount;
+      const liveScoreEl = document.getElementById('live-score');
+      if (liveScoreEl) liveScoreEl.innerText = correctSoFar;
+
+      const pct = Math.round((submittedCount / examQuestions.length) * 100);
+      document.getElementById('progress-bar').style.width = `${pct}%`;
+    }
+
+    function promptSubmitExam() {
+      if (isGraded) {
+        openModal('score-modal');
+        return;
+      }
+
+      const submittedCount = Object.keys(submittedQuestions).length;
+      const total = examQuestions.length;
+
+      if (submittedCount < total) {
+        document.getElementById('confirm-submit-title').innerText = "Unsubmitted Questions Remaining";
+        document.getElementById('confirm-submit-desc').innerHTML = `Eli has submitted <strong>${submittedCount}</strong> of <strong>${total}</strong> questions.<br>Do you want to grade all remaining questions now?`;
+        openModal('confirm-submit-modal');
       } else {
-        panel.classList.add('hidden');
+        finalizeGrading();
       }
     }
 
-    function nextQuestion() {
-      if (currentIdx < questions.length - 1) {
-        renderQuestion(currentIdx + 1);
-        window.scrollTo({ top: 100, behavior: 'smooth' });
-      }
-    }
+    function finalizeGrading() {
+      closeModal('confirm-submit-modal');
+      isGraded = true;
+      if (timerInterval) clearInterval(timerInterval);
 
-    function prevQuestion() {
-      if (currentIdx > 0) {
-        renderQuestion(currentIdx - 1);
-        window.scrollTo({ top: 100, behavior: 'smooth' });
-      }
-    }
+      // Force submit and grade any remaining unsubmitted questions
+      examQuestions.forEach(q => {
+        if (!submittedQuestions[q.id]) {
+          submitSingleQuestion(q.id);
+          // If was blank, grade as incorrect
+          if (!submittedQuestions[q.id]) {
+            submittedQuestions[q.id] = true;
+            const card = document.getElementById(`card-${q.id}`);
+            const badge = document.getElementById(`badge-${q.id}`);
+            const inputEl = document.getElementById(`input-${q.id}`);
+            const workEl = document.getElementById(`work-${q.id}`);
+            const subBtn = document.getElementById(`btn-sub-${q.id}`);
+            const explanationEl = document.getElementById(`explanation-${q.id}`);
 
-    function updateProgress() {
-      const total = questions.length;
-      let correct = 0;
-      let answered = 0;
+            if (inputEl) inputEl.disabled = true;
+            if (workEl) workEl.disabled = true;
+            if (subBtn) {
+              subBtn.disabled = true;
+              subBtn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-400 border border-slate-200 cursor-default flex items-center gap-1 ml-auto";
+              subBtn.innerHTML = "<span>Submitted</span> ✓";
+            }
 
-      for (let i = 0; i < total; i++) {
-        if (checkedStatus[i]) {
-          answered++;
-          if (selectedAnswers[i] === questions[i].answer) {
-            correct++;
+            badge.classList.remove('hidden');
+            badge.innerText = "○ Blank";
+            badge.className = "text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-300";
+            card.classList.add("border-rose-300", "bg-rose-50/20");
+
+            explanationEl.classList.remove('hidden');
+            explanationEl.className = "mt-3 p-3 bg-rose-50 rounded-xl text-xs border border-rose-200 text-rose-900 leading-relaxed";
+            explanationEl.innerHTML = `
+              <div class="flex items-center gap-2 font-bold mb-1">
+                <span>Eli's Answer: <span class="italic text-slate-500">Unanswered</span></span>
+                <span class="text-emerald-700">• Correct Quotient: <span class="math-font text-sm underline">${q.ans}</span></span>
+              </div>
+              <div>Remember: <strong>${q.text} = ${q.ans}</strong> because <strong>${q.hint}</strong>.</div>
+            `;
           }
         }
-      }
-
-      document.getElementById('score-counter').textContent = `${correct} / ${total}`;
-      document.getElementById('correct-count').textContent = `${correct} Correct`;
-      document.getElementById('streak-count').textContent = `Streak: ${currentStreak} 🔥`;
-      document.getElementById('progress-text').textContent = `Question ${currentIdx + 1} of ${total}`;
-
-      const pct = Math.max(3, Math.round(((currentIdx + 1) / total) * 100));
-      document.getElementById('progress-bar-fill').style.width = `${pct}%`;
-    }
-
-    function updateCoachTip(cat) {
-      const tips = {
-        "Powers of 10": "When working with '100 times' or '1/10 of', ask yourself: 'Is the answer bigger or smaller?' In 5th grade, multiplying by 10 moves numbers one place value to the left!",
-        "Forms of Decimals": "Remember: The decimal point is spoken as 'and'! In expanded form, multiply each digit by its place value fraction: 1/10, 1/100, or 1/1,000.",
-        "Comparing Decimals": "Pad decimals with zeros so they have the same number of digits! 4.15 becomes 4.150. Then compare tenths, hundredths, and thousandths from left to right.",
-        "Patterns with Powers": "Look at the jumps: each shift of the decimal to the right is &times;10. If the decimal shifts two times, that's &times;100 (or 10²).",
-        "Rounding Decimals": "Find your target place, look ONE door to the right. 5 or more? Raise the score! 4 or less? Let it rest! Drop all digits to the right."
-      };
-      document.getElementById('coach-tip-text').textContent = tips[cat] || "Take your time and check your work carefully!";
-    }
-
-    function showCoachMessage(msg) {
-      const coachText = document.getElementById('coach-tip-text');
-      const old = coachText.textContent;
-      coachText.textContent = msg;
-      setTimeout(() => { coachText.textContent = old; }, 3500);
-    }
-
-    function filterCategory(cat) {
-      currentCategoryFilter = cat;
-      document.querySelectorAll('.cat-pill').forEach(pill => {
-        if (pill.getAttribute('data-category') === cat) {
-          pill.className = "cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-indigo-600 text-white transition shadow-sm";
-        } else {
-          pill.className = "cat-pill px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-indigo-300 transition";
-        }
       });
 
-      // Jump to first question of category
-      if (cat === "All") {
-        renderQuestion(0);
+      let correctCount = 0;
+      examQuestions.forEach(q => {
+        if (userAnswers[q.id] === q.ans) correctCount++;
+      });
+
+      // Update submit buttons to Review state
+      document.getElementById('submit-btn').innerHTML = "View Results 📊";
+      document.getElementById('submit-btn').className = "px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition";
+      document.getElementById('bottom-submit-btn').innerText = "View Final Scorecard 📊";
+      document.getElementById('bottom-submit-btn').className = "px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl shadow-lg transition";
+
+      // Show top review banner
+      document.getElementById('review-banner').classList.remove('hidden');
+
+      // Populate scorecard modal
+      const percentage = Math.round((correctCount / examQuestions.length) * 100);
+      document.getElementById('modal-score').innerText = `${correctCount}/40`;
+      document.getElementById('modal-percent').innerText = `${percentage}%`;
+      document.getElementById('modal-time').innerText = document.getElementById('timer-display').innerText;
+
+      const badgeEl = document.getElementById('modal-badge');
+      const titleEl = document.getElementById('modal-title');
+      const subEl = document.getElementById('modal-subtitle');
+      const summaryText = document.getElementById('modal-summary-text');
+      const reviewTitle = document.getElementById('review-title');
+      const reviewSub = document.getElementById('review-subtitle');
+
+      if (percentage === 100) {
+        badgeEl.innerText = "🏆";
+        titleEl.innerText = "100% Perfect Final Exam!";
+        subEl.innerText = "40 out of 40! Complete mastery, Eli!";
+        summaryText.innerHTML = `<strong>Outstanding achievement, Eli!</strong> You conquered all 40 free-response division facts with 100% precision. Be sure your teacher or parent checks all your shown work!`;
+        reviewTitle.innerText = "Flawless Score: 40 / 40 (100%)";
+        reviewSub.innerText = "Every single problem was solved correctly!";
+      } else if (percentage >= 80) {
+        badgeEl.innerText = "🌟";
+        titleEl.innerText = "Fantastic Effort, Eli!";
+        subEl.innerText = `Final Score: ${correctCount}/40 (${percentage}%)`;
+        summaryText.innerHTML = `<strong>Terrific work!</strong> You solved ${correctCount} out of 40 free-response questions correctly. Review any missed facts below and verify your work steps.`;
+        reviewTitle.innerText = `Score: ${correctCount} / 40 (${percentage}%)`;
+        reviewSub.innerText = `Review the red cards below to study the exact multiplication facts.`;
+      } else if (percentage >= 60) {
+        badgeEl.innerText = "💪";
+        titleEl.innerText = "Good Practice Run, Eli!";
+        subEl.innerText = `Final Score: ${correctCount}/40 (${percentage}%)`;
+        summaryText.innerHTML = `Strong stamina finishing all 40 problems! Review the explanations below, check your work steps, and try again to aim for 90%+!`;
+        reviewTitle.innerText = `Score: ${correctCount} / 40 (${percentage}%)`;
+        reviewSub.innerText = `Review the division facts below and try again for a higher score!`;
       } else {
-        const found = questions.findIndex(q => q.category === cat);
-        if (found !== -1) renderQuestion(found);
+        badgeEl.innerText = "🌱";
+        titleEl.innerText = "Keep Practicing, Eli!";
+        subEl.innerText = `Final Score: ${correctCount}/40 (${percentage}%)`;
+        summaryText.innerHTML = `40 questions is a big exam! Keep practicing thinking of multiplication backwards. Look over your shown work to find any small calculation slips!`;
+        reviewTitle.innerText = `Score: ${correctCount} / 40 (${percentage}%)`;
+        reviewSub.innerText = `Take your time reviewing the explanations below.`;
       }
+
+      openModal('score-modal');
     }
 
-    function openJumpModal() {
-      const grid = document.getElementById('jump-buttons-grid');
-      grid.innerHTML = '';
-
-      questions.forEach((q, idx) => {
-        const btn = document.createElement('button');
-        const isCurrent = (idx === currentIdx);
-        const isChecked = checkedStatus[idx];
-        const isCorrect = (selectedAnswers[idx] === q.answer);
-
-        let bg = "bg-slate-100 text-slate-700 hover:bg-slate-200";
-        if (isChecked) {
-          bg = isCorrect ? "bg-emerald-500 text-white" : "bg-rose-500 text-white";
-        } else if (isCurrent) {
-          bg = "bg-indigo-600 text-white font-bold ring-2 ring-indigo-300";
-        }
-
-        btn.className = `h-9 rounded-xl text-xs font-semibold flex items-center justify-center transition ${bg}`;
-        btn.textContent = q.id;
-        btn.onclick = () => {
-          renderQuestion(idx);
-          closeJumpModal();
-        };
-        grid.appendChild(btn);
-      });
-
-      document.getElementById('jump-modal').classList.remove('hidden');
+    function promptResetExam() {
+      openModal('reset-modal');
     }
 
-    function closeJumpModal() {
-      document.getElementById('jump-modal').classList.add('hidden');
+    function confirmReset() {
+      closeModal('reset-modal');
+      closeModal('score-modal');
+      closeModal('confirm-submit-modal');
+
+      isGraded = false;
+      for (const k in userAnswers) delete userAnswers[k];
+      for (const k in userWork) delete userWork[k];
+      for (const k in submittedQuestions) delete submittedQuestions[k];
+
+      timerSeconds = 0;
+      document.getElementById('timer-display').innerText = "00:00";
+      document.getElementById('answered-counter').innerText = "0";
+      const liveScoreEl = document.getElementById('live-score');
+      if (liveScoreEl) liveScoreEl.innerText = "0";
+      document.getElementById('progress-bar').style.width = "0%";
+      document.getElementById('review-banner').classList.add('hidden');
+
+      document.getElementById('submit-btn').innerHTML = "<span>Submit Final Exam</span> 🚀";
+      document.getElementById('submit-btn').className = "px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-700 text-white shadow-md shadow-indigo-200 active:scale-95 transition flex items-center gap-1.5";
+      document.getElementById('bottom-submit-btn').innerText = "Submit & View Final Score 🎯";
+      document.getElementById('bottom-submit-btn').className = "px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-100 active:scale-95 transition";
+
+      renderQuestions();
+      startTimer();
     }
 
-    function togglePlaceValueChart() {
-      const modal = document.getElementById('place-value-chart-modal');
-      modal.classList.toggle('hidden');
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('hidden');
     }
 
-    function toggleScratchpad() {
-      const modal = document.getElementById('scratchpad-modal');
-      modal.classList.toggle('hidden');
-      if (!modal.classList.contains('hidden')) {
-        setupScratchpad();
-      }
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
     }
 
-    function setupScratchpad() {
-      scratchpadCanvas = document.getElementById('scratchpad-canvas');
-      const parent = scratchpadCanvas.parentElement;
-      scratchpadCanvas.width = parent.clientWidth;
-      scratchpadCanvas.height = parent.clientHeight || 450;
-      scratchpadCtx = scratchpadCanvas.getContext('2d');
-      scratchpadCtx.lineCap = 'round';
-      scratchpadCtx.lineJoin = 'round';
-      scratchpadCtx.lineWidth = 3;
-      scratchpadCtx.strokeStyle = currentColor;
-
-      scratchpadCanvas.onmousedown = startDraw;
-      scratchpadCanvas.onmousemove = draw;
-      scratchpadCanvas.onmouseup = stopDraw;
-      scratchpadCanvas.onmouseleave = stopDraw;
-
-      // Touch events for mobile/tablet
-      scratchpadCanvas.ontouchstart = (e) => {
-        e.preventDefault();
-        const touch = e.touches[0];
-        const rect = scratchpadCanvas.getBoundingClientRect();
-        isDrawing = true;
-        scratchpadCtx.beginPath();
-        scratchpadCtx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top);
-      };
-      scratchpadCanvas.ontouchmove = (e) => {
-        e.preventDefault();
-        if (!isDrawing) return;
-        const touch = e.touches[0];
-        const rect = scratchpadCanvas.getBoundingClientRect();
-        scratchpadCtx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top);
-        scratchpadCtx.stroke();
-      };
-      scratchpadCanvas.ontouchend = () => { isDrawing = false; };
-    }
-
-    function startDraw(e) {
-      isDrawing = true;
-      const rect = scratchpadCanvas.getBoundingClientRect();
-      scratchpadCtx.beginPath();
-      scratchpadCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-    }
-
-    function draw(e) {
-      if (!isDrawing) return;
-      const rect = scratchpadCanvas.getBoundingClientRect();
-      scratchpadCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-      scratchpadCtx.stroke();
-    }
-
-    function stopDraw() {
-      isDrawing = false;
-    }
-
-    function clearScratchpad() {
-      if (scratchpadCtx && scratchpadCanvas) {
-        scratchpadCtx.clearRect(0, 0, scratchpadCanvas.width, scratchpadCanvas.height);
-      }
-    }
-
-    function setPenColor(color) {
-      currentColor = color;
-      if (scratchpadCtx) {
-        scratchpadCtx.strokeStyle = color;
-      }
-    }
-
-    let showAllSolutionsFlag = false;
-
-    function toggleViewMode() {
-      const interactive = document.getElementById('interactive-view');
-      const allView = document.getElementById('all-questions-view');
-      const btnText = document.getElementById('view-mode-text');
-      const btnIcon = document.getElementById('view-mode-icon');
-
-      if (interactive.classList.contains('hidden')) {
-        interactive.classList.remove('hidden');
-        allView.classList.add('hidden');
-        btnText.textContent = "View All 50";
-        btnIcon.textContent = "📋";
-      } else {
-        interactive.classList.add('hidden');
-        allView.classList.remove('hidden');
-        btnText.textContent = "Interactive Mode";
-        btnIcon.textContent = "🎯";
-        renderAllQuestionsView();
-      }
-    }
-
-    function renderAllQuestionsView() {
-      const container = document.getElementById('all-questions-list');
-      container.innerHTML = '';
-
-      questions.forEach((q, idx) => {
-        const div = document.createElement('div');
-        div.className = "bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4";
-        const correctLetter = String.fromCharCode(65 + q.answer);
-
-        div.innerHTML = `
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-700 font-bold flex items-center justify-center text-xs">#${q.id}</span>
-              <span class="text-xs uppercase font-semibold tracking-wider text-slate-500 bg-slate-100 px-2 py-0.5 rounded">${q.category}</span>
-            </div>
-            <button onclick="toggleSingleAnswer(${idx})" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition">
-              <span id="all-view-btn-text-${idx}">Show Answer &amp; Steps</span>
-            </button>
-          </div>
-
-          <div class="text-base font-bold text-slate-900">${q.prompt}</div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-slate-700 pt-1">
-            ${q.options.map((opt, oIdx) => `
-              <div class="p-2.5 rounded-xl border border-slate-100 bg-slate-50 flex items-center gap-2">
-                <span class="w-5 h-5 rounded-md bg-white text-slate-600 text-xs font-bold flex items-center justify-center shadow-xs">${String.fromCharCode(65 + oIdx)}</span>
-                <span>${opt}</span>
-              </div>
-            `).join('')}
-          </div>
-
-          <div id="all-view-solution-${idx}" class="${showAllSolutionsFlag ? '' : 'hidden'} bg-indigo-50/70 p-4 rounded-xl border border-indigo-100 text-xs text-slate-700 space-y-2 mt-2">
-            <div class="font-bold text-emerald-800 text-sm flex items-center gap-1.5">
-              <span>Correct Answer:</span>
-              <span class="bg-emerald-200 text-emerald-900 px-2 py-0.5 rounded">Option ${correctLetter}: ${q.options[q.answer]}</span>
-            </div>
-            <div class="space-y-1">
-              ${q.steps.map(s => `<div>• ${s}</div>`).join('')}
-            </div>
-            <div class="text-amber-800 pt-1 italic">
-              <strong>Tip:</strong> ${q.trap}
-            </div>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function toggleSingleAnswer(idx) {
-      const panel = document.getElementById(`all-view-solution-${idx}`);
-      const btnText = document.getElementById(`all-view-btn-text-${idx}`);
-      if (panel.classList.contains('hidden')) {
-        panel.classList.remove('hidden');
-        btnText.textContent = "Hide Answer";
-      } else {
-        panel.classList.add('hidden');
-        btnText.textContent = "Show Answer & Steps";
-      }
-    }
-
-    function toggleAllSolutions() {
-      showAllSolutionsFlag = !showAllSolutionsFlag;
-      document.getElementById('toggle-all-solutions-btn').textContent = showAllSolutionsFlag ? "Hide All Explanations" : "Show All Explanations";
-      renderAllQuestionsView();
-    }
-
-    window.onload = function() {
-      renderQuestion(0);
-      window.addEventListener('resize', () => {
-        if (!document.getElementById('scratchpad-modal').classList.contains('hidden')) {
-          setupScratchpad();
-        }
-      });
-    };
+    // Startup
+    window.addEventListener('DOMContentLoaded', () => {
+      renderQuestions();
+      startTimer();
+    });
   </script>
 </body>
 </html>
